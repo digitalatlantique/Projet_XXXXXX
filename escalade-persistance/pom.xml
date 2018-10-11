@@ -22,18 +22,30 @@
   </properties>
 
   <dependencies>
+	<!-- Modules -->
+	<dependency>
+		<groupId>org.oc.escalade</groupId>
+		<artifactId>escalade-modele</artifactId>
+	</dependency>
+	<!--  Dépendances tiers -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-	
-	<!-- Modules -->
-	<dependency>
-		<groupId>org.oc.escalade</groupId>
-		<artifactId>escalade-modele</artifactId>
-	</dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+    </dependency>
+		<dependency>
+		  <groupId>javax.annotation</groupId>
+		  <artifactId>javax.annotation-api</artifactId>
+		</dependency>
+		<dependency>
+  			<groupId>javax.inject</groupId>
+  			<artifactId>javax.inject</artifactId>
+  		</dependency>
   </dependencies>
 
   <build>
