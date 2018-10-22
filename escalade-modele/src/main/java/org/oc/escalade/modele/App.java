@@ -20,6 +20,10 @@ public class App
         	Membre mb = new Membre("Dubois", "George", "george@yahoo.fr");
         	tx = session.beginTransaction();
         	session.save(mb);
+        	
+        	Membre mb2 = (Membre) session.load(Membre.class, 2);
+        	
+        	System.out.println("Membre N°2 : " + mb2.getNom() + " " + mb2.getPrenom());
         	tx.commit();
         }
         catch(Exception e) {
