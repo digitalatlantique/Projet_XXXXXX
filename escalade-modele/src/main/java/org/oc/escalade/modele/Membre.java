@@ -1,5 +1,9 @@
 package org.oc.escalade.modele;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,11 +15,29 @@ public class Membre  {
 	@Column(name="membre_id")
 	private int id;
 	
+	@Column(length=250, nullable=false)
 	private String nom;
+	
+	@Column(length=250, nullable=false)
 	private String prenom;
+	
+	@Column(length=250, nullable=false)
 	private String password;
+	
+	@Column(length=250, nullable=false)
 	private String email;
+	
+	@Column(nullable=false)
 	private boolean compteValide;
+	
+	@OneToMany(mappedBy="membre")
+	private Collection<Site> sites = new HashSet<Site>();
+	
+	@OneToMany(mappedBy="membre")
+	private Collection<Topo> topos = new HashSet<Topo>();
+	
+	@OneToMany(mappedBy="membre", cascade = CascadeType.ALL)
+	private Collection<Location> locations = new ArrayList<Location>();
 	
 	public Membre() {
 		
@@ -26,6 +48,24 @@ public class Membre  {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
+	}
+	
+	public void ajouterSite(Site site) {
+		site.setMembre(this);
+		sites.add(site);
+	}
+	
+	public Collection<Site> recupererSites(){
+		return sites;
+	}
+	
+	public void ajouterTopo(Topo topo) {
+		topo.setMembre(this);
+		topos.add(topo);
+	}
+	
+	public Collection<Topo> recupererTopo(){
+		return topos;
 	}
 	public int getId() {
 		return id;
