@@ -7,7 +7,7 @@ import java.util.HashSet;
 import javax.persistence.*;
 
 @Entity
-@Table(name="membre")
+@Table(name="membre", uniqueConstraints=@UniqueConstraint(columnNames= {"nom", "prenom"}))
 public class Membre  {	
 
 	@Id
@@ -27,7 +27,7 @@ public class Membre  {
 	@Column(length=250, nullable=false)
 	private String email;
 	
-	@Column(nullable=false)
+	@Column(name="compte_valide", nullable=false)
 	private boolean compteValide;
 	
 	@OneToMany(mappedBy="membre")

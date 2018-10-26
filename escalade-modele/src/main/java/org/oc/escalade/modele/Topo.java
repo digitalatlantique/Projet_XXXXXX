@@ -19,7 +19,7 @@ public class Topo {
 	@Column(length=1000, nullable=false)
 	private String information;
 	
-	@Column(nullable=false)
+	@Column(name="autoriser_location", nullable=false)
 	private boolean autoriserLocation;
 	
 	@ManyToOne
@@ -35,17 +35,13 @@ public class Topo {
 
 
 	public Topo() {
-	}
-	
-	
+	}	
 
 	public Topo(String libelle, String information, boolean autoriserLocation) {
 		this.libelle = libelle;
 		this.information = information;
 		this.autoriserLocation = autoriserLocation;
 	}
-
-
 
 	public int getId() {
 		return id;

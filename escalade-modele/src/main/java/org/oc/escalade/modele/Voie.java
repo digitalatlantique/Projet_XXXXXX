@@ -11,8 +11,8 @@ public class Voie {
 	@Column(name="voie_id")
 	private int id;
 	
-	@Column(nullable=false)
-	private int numero;
+	@Column(nullable=false, length=50)
+	private String numero;
 	
 	@Column(length=250, nullable=false)
 	private String nom;
@@ -27,7 +27,7 @@ public class Voie {
 	public Voie() {
 	}
 
-	public Voie(int numero, String nom, String cotation) {
+	public Voie(String numero, String nom, String cotation) {
 		this.numero = numero;
 		this.nom = nom;
 		this.cotation = cotation;
@@ -41,11 +41,11 @@ public class Voie {
 		this.id = id;
 	}	
 
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 

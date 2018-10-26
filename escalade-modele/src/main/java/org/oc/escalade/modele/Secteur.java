@@ -25,7 +25,7 @@ public class Secteur {
 	
 	private int hauteur;
 	
-	@Column(name="image_path", length=250, nullable=false)
+	@Column(name="image_path", length=250)
 	private String imagePath;
 	
 	@ManyToOne

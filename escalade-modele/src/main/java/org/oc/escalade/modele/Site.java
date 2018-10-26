@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+
 
 
 @Entity
@@ -17,7 +17,7 @@ public class Site {
 	@Column(name="site_id")
 	private int id;
 	
-	@Column(length=250, nullable=false)
+	@Column(length=250, nullable=false, unique=true)
 	private String nom;
 	
 	@Column(length=1000, nullable=false)
@@ -29,10 +29,10 @@ public class Site {
 	@Column(name="code_postal", length=50, nullable=false)
 	private String codePostal;
 	
-	@Column(name="hauteur_min")
+	@Transient
 	private int hauteurMin;
 	
-	@Column(name="hauteur_max")
+	@Transient
 	private int hauteurMax;
 	
 	@Column(name="image_path", length=250)
