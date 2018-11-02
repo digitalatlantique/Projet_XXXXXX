@@ -46,6 +46,10 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="membreDAO" class="org.oc.escalade.persistance.MembreDAOImpl" autowire="byName"/>
+	<bean id="voieDAO" class="org.oc.escalade.persistance.VoieDAOImpl" autowire="byName"/>
+	<bean id="secteurDAO" class="org.oc.escalade.persistance.SecteurDAOImpl" autowire="byName"/>
+	<bean id="siteDAO" class="org.oc.escalade.persistance.SiteDAOImpl" autowire="byName"/>
+	<bean id="commentaireDAO" class="org.oc.escalade.persistance.CommentaireDAOImpl" autowire="byName"/>
 
 	
 

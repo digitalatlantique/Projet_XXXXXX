@@ -1,5 +1,7 @@
 package org.oc.escalade.persistance;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.oc.escalade.modele.Membre;
@@ -8,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public class MembreDAOImpl implements EscaladeDAO<Membre> {
+public class MembreDAOImpl extends AbstractEscaladeDAO implements EscaladeDAO<Membre> {
 	
-	private SessionFactory sessionFactory;
 
 	@Override
 	public Membre enregistrer(Membre membre) {
+		
 		Session session = sessionFactory.getCurrentSession();
 		session.save(membre);
 		return membre;
@@ -21,6 +23,7 @@ public class MembreDAOImpl implements EscaladeDAO<Membre> {
 
 	@Override
 	public Membre chercher(int identifiant) {
+		
 		Session session = sessionFactory.getCurrentSession();
 		Membre membre = (Membre) session.get(Membre.class, identifiant);		
 		return membre;
@@ -28,6 +31,7 @@ public class MembreDAOImpl implements EscaladeDAO<Membre> {
 
 	@Override
 	public void modifier(Membre membre) {
+		
 		Session session = sessionFactory.getCurrentSession();
 		session.update(membre);
 		
@@ -35,14 +39,18 @@ public class MembreDAOImpl implements EscaladeDAO<Membre> {
 
 	@Override
 	public void supprimer(int identifiant) {
+		
 		Session session = sessionFactory.getCurrentSession();
 		Membre membre = session.get(Membre.class, identifiant);
 		session.delete(membre);
 		
 	}
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	@Override
+	public List<Membre> lister(int identifiant) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 
 }
