@@ -7,6 +7,7 @@ import org.oc.escalade.modele.Commentaire;
 import org.oc.escalade.modele.Membre;
 import org.oc.escalade.modele.Secteur;
 import org.oc.escalade.modele.Site;
+import org.oc.escalade.modele.Topo;
 import org.oc.escalade.modele.Voie;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -42,6 +43,9 @@ public class App{
 		CommentaireDAOImpl cDAO = contexte.getBean(CommentaireDAOImpl.class);
 		List<Commentaire> commentaires = cDAO.lister(1);
 		
+		TopoDAOImpl tDAO = contexte.getBean(TopoDAOImpl.class);
+		List<Topo> topos = tDAO.lister(1);
+		
 		System.out.println(membre.getNom() + " " + membre.getPrenom());
 		
 		System.out.println("Les voies secteur 1 -------------------------");
@@ -63,6 +67,13 @@ public class App{
 			System.out.println("Commentaire de : " + c.getMembre().getNom());
 			System.out.println(c.getCommentaire());
 			System.out.println("Du site : " + c.getSite().getNom());
+		}
+		
+		System.out.println("Les topos du membre 1 ----------------------");
+		for (Topo c: topos) {
+			System.out.println("Commentaire de : " + c.getMembre().getNom());
+			System.out.println(c.getInformation());
+
 		}	
 		
     }

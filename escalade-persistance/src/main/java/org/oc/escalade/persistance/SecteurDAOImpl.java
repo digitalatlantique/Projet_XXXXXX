@@ -43,6 +43,9 @@ public class SecteurDAOImpl extends AbstractEscaladeDAO implements EscaladeDAO<S
 		session.delete(secteur);
 	}
 
+	/**
+	 * Liste les secteurs d'un site
+	 */
 	@Override
 	public List<Secteur> lister(int identifiant) {
 		

@@ -50,6 +50,7 @@
 	<bean id="secteurDAO" class="org.oc.escalade.persistance.SecteurDAOImpl" autowire="byName"/>
 	<bean id="siteDAO" class="org.oc.escalade.persistance.SiteDAOImpl" autowire="byName"/>
 	<bean id="commentaireDAO" class="org.oc.escalade.persistance.CommentaireDAOImpl" autowire="byName"/>
+	<bean id="topoDAO" class="org.oc.escalade.persistance.TopoDAOImpl" autowire="byName"/>
 
 	
 

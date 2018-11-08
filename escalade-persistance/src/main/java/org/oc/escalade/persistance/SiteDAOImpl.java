@@ -45,6 +45,9 @@ public class SiteDAOImpl extends AbstractEscaladeDAO implements EscaladeDAO<Site
 		
 	}
 
+	/**
+	 * Liste les sites d'un membre
+	 */
 	@Override
 	public List<Site> lister(int identifiant) {
 		
