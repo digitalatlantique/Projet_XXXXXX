@@ -16,12 +16,14 @@ public class Location {
 	private boolean libre;
 	
 	@Temporal(TemporalType.DATE)
+	@Column(name="debut_location")
 	private Date debutLocation;
 	
 	@Temporal(TemporalType.DATE)
+	@Column(name="fin_location")
 	private Date finLocation;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="topo_id", nullable=false)
 	private Topo topo;
 	

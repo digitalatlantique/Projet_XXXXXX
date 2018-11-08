@@ -42,11 +42,6 @@ public class Secteur {
 	public Secteur(String nom) {
 		this.nom = nom;
 	}
-
-	public void ajouterVoie(Voie voie) {
-		voie.setSecteur(this);
-		voies.add(voie);
-	}
 	
 	public Collection<Voie> recupererVoies(){
 		return voies;
@@ -56,41 +51,48 @@ public class Secteur {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getNom() {
 		return nom;
 	}
 
-
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
 
 	public int getHauteur() {
 		return hauteur;
 	}
 
-
 	public void setHauteur(int hauteur) {
 		this.hauteur = hauteur;
 	}
-
 
 	public Site getSite() {
 		return site;
 	}
 
-
 	public void setSite(Site site) {
 		this.site = site;
 	}
 
-	
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	public Collection<Voie> getVoies() {
+		return voies;
+	}
+
+	public void setVoies(Collection<Voie> voies) {
+		this.voies = voies;
+	}	
 
 }

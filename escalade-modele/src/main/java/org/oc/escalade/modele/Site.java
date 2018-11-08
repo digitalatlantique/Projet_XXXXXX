@@ -61,20 +61,10 @@ public class Site {
 		this.presentation = presentation;
 		this.localite = localite;
 		this.codePostal = codePostal;
-	}
-	
-	public void ajouterCommentaire(Commentaire com, Membre membre) {
-		com.setMembre(membre);
-		com.setSite(this);
-		commentaires.add(com);
-	}
+	}	
+
 	public Collection<Commentaire> recupererCommentaires(){
 		return commentaires;
-	}
-	
-	public void ajouterSecteur(Secteur secteur) {
-		secteur.setSite(this);
-		secteurs.add(secteur);
 	}
 	
 	public Collection<Secteur> recupererSecteurs(){
@@ -152,9 +142,30 @@ public class Site {
 	public void setMembre(Membre membre) {
 		this.membre = membre;
 	}
-	
-	
-	
+
+	public Collection<Commentaire> getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(Collection<Commentaire> commentaires) {
+		this.commentaires = commentaires;
+	}
+
+	public Collection<Secteur> getSecteurs() {
+		return secteurs;
+	}
+
+	public void setSecteurs(Collection<Secteur> secteurs) {
+		this.secteurs = secteurs;
+	}
+
+	public Collection<Topo> getTopos() {
+		return topos;
+	}
+
+	public void setTopos(Collection<Topo> topos) {
+		this.topos = topos;
+	}	
 	
 
 }

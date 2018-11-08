@@ -103,4 +103,30 @@ public class Membre  {
 	public void setCompteValide(boolean compteValide) {
 		this.compteValide = compteValide;
 	}
+
+	public Collection<Site> getSites() {
+		return sites;
+	}
+
+	public void setSites(Collection<Site> sites) {
+		this.sites = sites;
+	}
+
+	public Collection<Topo> getTopos() {
+		return topos;
+	}
+
+	public void setTopos(Collection<Topo> topos) {
+		this.topos = topos;
+	}
+
+	public Collection<Location> getLocations() {
+		return locations;
+	}
+
+	public void setLocations(Collection<Location> locations) {
+		this.locations = locations;
+	}
+	
+	
 }

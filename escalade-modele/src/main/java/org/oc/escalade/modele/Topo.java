@@ -30,8 +30,8 @@ public class Topo {
 	@JoinColumn(name="site_id")
 	private Collection<Site> sites;
 	
-	@OneToOne(mappedBy="topo")
-	private Location location;
+	@OneToMany(mappedBy="topo")
+	private Collection<Location> locations;
 
 
 	public Topo() {
