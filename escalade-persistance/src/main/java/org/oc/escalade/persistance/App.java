@@ -26,7 +26,7 @@ public class App{
 		ApplicationContext contexte = new ClassPathXmlApplicationContext("spring_conf_persistance.xml");
 		
 		// Le contexte fournie le composant
-		
+	
 		MembreDAOImpl mDAO = contexte.getBean(MembreDAOImpl.class);
 		
 		Membre membre = mDAO.chercher(1);
@@ -74,7 +74,8 @@ public class App{
 			System.out.println("Commentaire de : " + c.getMembre().getNom());
 			System.out.println(c.getInformation());
 
-		}	
+		}
+			
 		
     }
 }

@@ -1,5 +1,7 @@
 package org.oc.escalade.modele;
 
+
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.*;
@@ -28,10 +30,10 @@ public class Topo {
 	
 	@ManyToMany
 	@JoinColumn(name="site_id")
-	private Collection<Site> sites;
+	private Collection<Site> sites = new ArrayList<Site>();
 	
-	@OneToMany(mappedBy="topo")
-	private Collection<Location> locations;
+	@OneToMany(mappedBy="location_id.topo", cascade=CascadeType.ALL)
+	private Collection<Location> locations = new ArrayList<Location>();
 
 
 	public Topo() {
@@ -74,21 +76,27 @@ public class Topo {
 	public void setAutoriserLocation(boolean autoriserLocation) {
 		this.autoriserLocation = autoriserLocation;
 	}
-
-
-
 	public Membre getMembre() {
 		return membre;
 	}
-
-
-
 	public void setMembre(Membre membre) {
 		this.membre = membre;
 	}
-	
-	
-	
-	
 
+	public Collection<Site> getSites() {
+		return sites;
+	}
+
+	public void setSites(Collection<Site> sites) {
+		this.sites = sites;
+	}
+
+	public Collection<Location> getLocations() {
+		return locations;
+	}
+
+	public void setLocations(Collection<Location> locations) {
+		this.locations = locations;
+	}	
+	
 }

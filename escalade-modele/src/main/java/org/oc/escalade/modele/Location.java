@@ -2,7 +2,6 @@ package org.oc.escalade.modele;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
 import javax.persistence.*;
 
 @Entity
@@ -10,10 +9,7 @@ import javax.persistence.*;
 public class Location {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int location_id;
-	
-	private boolean libre;
+	LocationId location_id;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="debut_location")
@@ -23,17 +19,30 @@ public class Location {
 	@Column(name="fin_location")
 	private Date finLocation;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="topo_id", nullable=false)
-	private Topo topo;
-	
-	@ManyToOne
-	@JoinColumn(name="membre_id", nullable=false)
-	private Membre membre;
-	
 	public Location() {
 	}
-	
-	
 
+	public LocationId getLocationId() {
+		return location_id;
+	}
+
+	public void setLocationId(LocationId location_id) {
+		this.location_id = location_id;
+	}
+
+	public Date getDebutLocation() {
+		return debutLocation;
+	}
+
+	public void setDebutLocation(Date debutLocation) {
+		this.debutLocation = debutLocation;
+	}
+
+	public Date getFinLocation() {
+		return finLocation;
+	}
+
+	public void setFinLocation(Date finLocation) {
+		this.finLocation = finLocation;
+	}
 }

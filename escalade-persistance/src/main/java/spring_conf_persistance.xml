@@ -23,12 +23,13 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>org.oc.escalade.modele.Commentaire</value>
-				<value>org.oc.escalade.modele.Location</value>
 				<value>org.oc.escalade.modele.Membre</value>
 				<value>org.oc.escalade.modele.Secteur</value>
 				<value>org.oc.escalade.modele.Site</value>
 				<value>org.oc.escalade.modele.Topo</value>
 				<value>org.oc.escalade.modele.Voie</value>
+				<value>org.oc.escalade.modele.Location</value>
+				<value>org.oc.escalade.modele.LocationId</value>
 			</list>
 		</property>
 		

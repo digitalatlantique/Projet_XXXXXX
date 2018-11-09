@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="membre", uniqueConstraints=@UniqueConstraint(columnNames= {"nom", "prenom"}))
-public class Membre  {	
+public class Membre {	
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -36,7 +36,7 @@ public class Membre  {
 	@OneToMany(mappedBy="membre")
 	private Collection<Topo> topos = new HashSet<Topo>();
 	
-	@OneToMany(mappedBy="membre", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="location_id.membre", cascade = CascadeType.ALL)
 	private Collection<Location> locations = new ArrayList<Location>();
 	
 	public Membre() {
