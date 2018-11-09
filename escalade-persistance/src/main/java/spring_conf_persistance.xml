@@ -46,12 +46,13 @@
 	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<bean id="membreDAO" class="org.oc.escalade.persistance.MembreDAOImpl" autowire="byName"/>
-	<bean id="voieDAO" class="org.oc.escalade.persistance.VoieDAOImpl" autowire="byName"/>
-	<bean id="secteurDAO" class="org.oc.escalade.persistance.SecteurDAOImpl" autowire="byName"/>
-	<bean id="siteDAO" class="org.oc.escalade.persistance.SiteDAOImpl" autowire="byName"/>
-	<bean id="commentaireDAO" class="org.oc.escalade.persistance.CommentaireDAOImpl" autowire="byName"/>
-	<bean id="topoDAO" class="org.oc.escalade.persistance.TopoDAOImpl" autowire="byName"/>
+	<bean id="membreDAO" class="org.oc.escalade.persistance.escaladeDAO.MembreDAOImpl" autowire="byName"/>
+	<bean id="voieDAO" class="org.oc.escalade.persistance.escaladeDAO.VoieDAOImpl" autowire="byName"/>
+	<bean id="secteurDAO" class="org.oc.escalade.persistance.escaladeDAO.SecteurDAOImpl" autowire="byName"/>
+	<bean id="siteDAO" class="org.oc.escalade.persistance.escaladeDAO.SiteDAOImpl" autowire="byName"/>
+	<bean id="commentaireDAO" class="org.oc.escalade.persistance.escaladeDAO.CommentaireDAOImpl" autowire="byName"/>
+	<bean id="topoDAO" class="org.oc.escalade.persistance.escaladeDAO.TopoDAOImpl" autowire="byName"/>
+	<bean id="rechercheDAO" class="org.oc.escalade.persistance.rechercheDAO.RechercheDAOImpl" autowire="byName"/>
 
 	
 

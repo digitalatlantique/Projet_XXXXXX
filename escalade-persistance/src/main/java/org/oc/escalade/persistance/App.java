@@ -9,6 +9,13 @@ import org.oc.escalade.modele.Secteur;
 import org.oc.escalade.modele.Site;
 import org.oc.escalade.modele.Topo;
 import org.oc.escalade.modele.Voie;
+import org.oc.escalade.persistance.escaladeDAO.CommentaireDAOImpl;
+import org.oc.escalade.persistance.escaladeDAO.MembreDAOImpl;
+import org.oc.escalade.persistance.escaladeDAO.SecteurDAOImpl;
+import org.oc.escalade.persistance.escaladeDAO.SiteDAOImpl;
+import org.oc.escalade.persistance.escaladeDAO.TopoDAOImpl;
+import org.oc.escalade.persistance.escaladeDAO.VoieDAOImpl;
+import org.oc.escalade.persistance.rechercheDAO.RechercheDAOImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
@@ -25,6 +32,35 @@ public class App{
 		// Point d'entré du framework
 		ApplicationContext contexte = new ClassPathXmlApplicationContext("spring_conf_persistance.xml");
 		
+		testRechercheDAO(contexte);
+			
+		
+    }
+
+	private static void testRechercheDAO(ApplicationContext contexte) {
+		RechercheDAOImpl rechercheDAO = contexte.getBean(RechercheDAOImpl.class);
+		List<Site> sites = rechercheDAO.parNomSite("la roche bernard");		
+		for (Site site : sites) {
+			System.out.println(site.getNom());
+		}
+		System.out.println("----------");
+		sites = rechercheDAO.parLocalite("i");
+		for (Site site : sites) {
+			System.out.println(site.getLocalite());
+		}
+		System.out.println("----------");
+		sites = rechercheDAO.parCodePostal("52150");
+		for (Site site : sites) {
+			System.out.println(site.getCodePostal());
+		}
+		System.out.println("----------");
+		sites = rechercheDAO.parMotCle("vitae");
+		for (Site site : sites) {
+			System.out.println(site.getPresentation());
+		}
+	}
+
+	private static void testDesObjetMetier(ApplicationContext contexte) {
 		// Le contexte fournie le composant
 	
 		MembreDAOImpl mDAO = contexte.getBean(MembreDAOImpl.class);
@@ -75,7 +111,5 @@ public class App{
 			System.out.println(c.getInformation());
 
 		}
-			
-		
-    }
+	}
 }

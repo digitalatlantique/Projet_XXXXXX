@@ -1,4 +1,4 @@
-package org.oc.escalade.persistance;
+package org.oc.escalade.persistance.escaladeDAO;
 
 import java.util.List;
 
