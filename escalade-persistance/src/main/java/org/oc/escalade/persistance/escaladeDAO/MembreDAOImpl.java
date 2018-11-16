@@ -12,6 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class MembreDAOImpl extends AbstractEscaladeDAO implements EscaladeDAO<Membre> {
 	
+	protected SessionFactory sessionFactory;	
+
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	@Override
 	public Membre enregistrer(Membre membre) {
