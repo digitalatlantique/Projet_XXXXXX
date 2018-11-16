@@ -10,6 +10,6 @@ public interface RechercheDAO {
 	List<Site> parLocalite(String localite);
 	List<Site> parCodePostal(String codePostal);
 	List<Site> parMotCle(String motCle);
-	
+	List<Site> multicritere(String nom, String localite, String cotationMin, String cotationMax);	
 
 }

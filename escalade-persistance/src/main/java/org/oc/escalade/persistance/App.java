@@ -1,6 +1,7 @@
 package org.oc.escalade.persistance;
 
 
+import java.util.Collection;
 import java.util.List;
 
 import org.oc.escalade.modele.Commentaire;
@@ -57,6 +58,26 @@ public class App{
 		sites = rechercheDAO.parMotCle("vitae");
 		for (Site site : sites) {
 			System.out.println(site.getPresentation());
+		}
+		
+		System.out.println("----------");
+		sites = rechercheDAO.multicritere(null, null, "6", "7");
+		for (Site site : sites) {
+			
+			System.out.println("Nom : " + site.getNom() + "  Localité : " + site.getLocalite() );
+			
+			Collection<Secteur> secteurs = site.getSecteurs();
+			
+			for (Secteur secteur : secteurs) {
+				
+				System.out.println(secteur.getNom());
+				Collection<Voie> voies = secteur.getVoies();
+				
+				for(Voie voie : voies) {
+					System.out.println("Voie Nom : " + voie.getNom() + " Cotation : " + voie.getCotation());
+				}
+			}
+			
 		}
 	}
 

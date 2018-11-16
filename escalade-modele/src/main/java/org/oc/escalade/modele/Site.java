@@ -41,7 +41,7 @@ public class Site {
 	@OneToMany(mappedBy="site", cascade = CascadeType.ALL)
 	private Collection<Commentaire> commentaires = new ArrayList<Commentaire>();
 	
-	@OneToMany(mappedBy="site", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="site", cascade = CascadeType.ALL)
 	private Collection<Secteur> secteurs = new HashSet<Secteur>();
 	
 	@ManyToOne
@@ -61,16 +61,8 @@ public class Site {
 		this.presentation = presentation;
 		this.localite = localite;
 		this.codePostal = codePostal;
-	}	
-
-	public Collection<Commentaire> recupererCommentaires(){
-		return commentaires;
 	}
 	
-	public Collection<Secteur> recupererSecteurs(){
-		return secteurs;
-	}
-
 	public int getId() {
 		return id;
 	}

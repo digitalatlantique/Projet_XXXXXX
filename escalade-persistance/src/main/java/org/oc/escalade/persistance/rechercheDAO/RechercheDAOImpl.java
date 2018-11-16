@@ -47,4 +47,54 @@ public class RechercheDAOImpl implements RechercheDAO {
 		return sites;
 	}
 
+	@Override
+	public List<Site> multicritere(String nom, String localite, String cotationMin, String cotationMax) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		boolean premierArg = true;
+		String req = 	"SELECT DISTINCT si From Site AS si INNER JOIN si.secteurs AS se INNER JOIN se.voies AS v ";  
+		
+		if(nom != null) {		
+			req += "WHERE lower(si.nom) like '%"+ nom.toLowerCase() +"%' ";
+			premierArg = false;
+		}
+		if(localite != null) {
+			if(premierArg) {
+				req += "WHERE lower(si.localite) like '%"+ localite.toLowerCase() +"%' ";
+				premierArg = false;
+			}
+			else {
+				req += "AND lower(si.localite) like '%"+ localite.toLowerCase() +"%' ";
+			}
+		}
+
+		if(cotationMin != null && cotationMax != null) {
+			if(premierArg) {
+				req += "WHERE v.cotation BETWEEN '" + cotationMin + "' AND '" + cotationMax + "' ";
+				premierArg = false;
+			}
+			else {
+				req += "AND v.cotation BETWEEN '" + cotationMin + "' AND '" + cotationMax + "' ";
+			}
+		}
+		
+		List<Site> sites = (List<Site>) session.createQuery(req).list();		
+		return sites;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
