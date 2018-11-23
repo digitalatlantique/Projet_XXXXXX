@@ -55,39 +55,30 @@ public class RechercheDAOImpl implements RechercheDAO {
 	}
 
 	@Override
-	public List<Site> multicritere(String nom, String localite, String cotationMin, String cotationMax) {
+	public List<Site> multicritere(String nom, String localite, String cotation) {
 		
 		Session session = sessionFactory.getCurrentSession();
-	
-		boolean premierArg = true;
-		String req = 	"SELECT DISTINCT si From Site AS si JOIN si.secteurs AS se JOIN  se.voies AS v "; 
-
 		
-		if(nom != null) {		
-			req += "WHERE lower(si.nom) like '%"+ nom.toLowerCase() +"%' ";
-			premierArg = false;
-		}
-		if(localite != null) {
-			if(premierArg) {
-				req += "WHERE lower(si.localite) like '%"+ localite.toLowerCase() +"%' ";
-				premierArg = false;
-			}
-			else {
-				req += "AND lower(si.localite) like '%"+ localite.toLowerCase() +"%' ";
-			}
-		}
-
-		if(cotationMin != null && cotationMax != null) {
-			if(premierArg) {
-				req += "WHERE v.cotation BETWEEN '" + cotationMin + "' AND '" + cotationMax + "' ";
-				premierArg = false;
-			}
-			else {
-				req += "AND v.cotation BETWEEN '" + cotationMin + "' AND '" + cotationMax + "' ";
-			}
-		}
+		CriteriaBuilder cb = session.getCriteriaBuilder();
 		
-		return (List<Site>) session.createQuery(req).getResultList();		
+		CriteriaQuery<Site> cq = cb.createQuery(Site.class);
+
+		Root<Site> site = cq.from(Site.class);
+		Join<Site, Secteur> secteurs = site.join("secteurs");
+		Join<Secteur, Voie> voies = secteurs.join("voies");
+		
+		Predicate[] predicates = new Predicate[1];
+		/*-
+		predicates[0] = cb.or(cb.like(site.<String> get("nom"), "%"+nom+"%"),
+								cb.like(site.<String> get("localite"), "%"+localite+"%"));
+		*/
+		predicates[0] = cb.equal(voies.<String> get("cotation"), cotation);
+
+		cq.select(site).where(predicates).distinct(true); 
+		TypedQuery<Site> resultat= session.createQuery(cq);
+		
+		List<Site> sites = resultat.getResultList();
+		return sites;		
 
 	}
 

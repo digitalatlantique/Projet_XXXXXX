@@ -62,14 +62,14 @@ public class App{
 		}
 		
 		System.out.println("----------");
-		sites = rechercheDAO.multicritere(null, null, "6a", "7");
+		sites = rechercheDAO.multicritere(null, null, "6a");
 		for (Site site : sites) {
 			
 			System.out.println("Nom : " + site.getNom() + "  Localité : " + site.getLocalite() );
 			
 			for (Secteur secteur : site.getSecteurs()) {
 				
-				System.out.println(secteur.getNom());
+				System.out.println("SECTEUR : " + secteur.getNom());
 				
 				for(Voie voie : secteur.getVoies()) {
 					System.out.println("Voie Nom : " + voie.getNom() + " Cotation : " + voie.getCotation());
