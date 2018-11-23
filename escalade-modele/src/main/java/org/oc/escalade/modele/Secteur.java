@@ -32,7 +32,7 @@ public class Secteur {
 	@JoinColumn(name="site_id", nullable=false)
 	private Site site;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="secteur")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="secteur") //  
 	private Collection<Voie> voies = new HashSet<Voie>();
 	
 	

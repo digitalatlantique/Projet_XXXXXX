@@ -4,9 +4,16 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.oc.escalade.modele.Secteur;
 import org.oc.escalade.modele.Site;
+import org.oc.escalade.modele.Voie;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
+import javax.persistence.metamodel.EntityType;
+import javax.persistence.metamodel.Metamodel;
 
 @Repository
 @Transactional
@@ -51,8 +58,10 @@ public class RechercheDAOImpl implements RechercheDAO {
 	public List<Site> multicritere(String nom, String localite, String cotationMin, String cotationMax) {
 		
 		Session session = sessionFactory.getCurrentSession();
+	
 		boolean premierArg = true;
-		String req = 	"SELECT DISTINCT si From Site AS si INNER JOIN si.secteurs AS se INNER JOIN se.voies AS v ";  
+		String req = 	"SELECT DISTINCT si From Site AS si JOIN si.secteurs AS se JOIN  se.voies AS v "; 
+
 		
 		if(nom != null) {		
 			req += "WHERE lower(si.nom) like '%"+ nom.toLowerCase() +"%' ";
@@ -78,8 +87,8 @@ public class RechercheDAOImpl implements RechercheDAO {
 			}
 		}
 		
-		List<Site> sites = (List<Site>) session.createQuery(req).list();		
-		return sites;
+		return (List<Site>) session.createQuery(req).getResultList();		
+
 	}
 
 }

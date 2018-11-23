@@ -15,7 +15,7 @@
 		<property name="url" value="jdbc:postgresql://localhost:5432/escalade"></property>
         <property name="username" value="admin"></property>
         <property name="password" value="admin"></property>
-
+		
 	</bean>
 	
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -54,8 +54,5 @@
 	<bean id="commentaireDAO" class="org.oc.escalade.persistance.escaladeDAO.CommentaireDAOImpl" autowire="byName"/>
 	<bean id="topoDAO" class="org.oc.escalade.persistance.escaladeDAO.TopoDAOImpl" autowire="byName"/>
 	<bean id="rechercheDAO" class="org.oc.escalade.persistance.rechercheDAO.RechercheDAOImpl" autowire="byName"/>
-
-	
-
 		
 </beans>

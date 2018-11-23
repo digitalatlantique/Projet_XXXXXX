@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public class SiteDAOImpl extends AbstractEscaladeDAO implements EscaladeDAO<Site> {
+public class SiteDAOImpl extends AbstractEscaladeDAO implements SiteDAO<Site> {
 
 	@Override
 	public Site enregistrer(Site site) {
@@ -55,6 +55,22 @@ public class SiteDAOImpl extends AbstractEscaladeDAO implements EscaladeDAO<Site
 		String requete = "FROM Site s WHERE membre_id = :mid";
 		List<Site> sites = (List<Site>) session.createQuery(requete).setParameter("mid", identifiant).list();
 		return sites;
+	}
+
+	@Override
+	public Site chercherDernier() {
+		
+		Session session = sessionFactory.getCurrentSession();
+		String requete = "SELECT max(s.id) FROM Site s ";
+		Site site = null;
+		int identifiantMax = (int) session.createQuery(requete).getSingleResult();
+		
+		while(site == null && identifiantMax != 0) {
+			 
+			site = this.chercher(identifiantMax);
+			identifiantMax--;
+		}		 
+		return site;
 	}
 
 }

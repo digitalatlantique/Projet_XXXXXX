@@ -33,6 +33,7 @@ public class App{
 		// Point d'entré du framework
 		ApplicationContext contexte = new ClassPathXmlApplicationContext("spring_conf_persistance.xml");
 		
+		//testDesObjetMetier(contexte);
 		testRechercheDAO(contexte);
 			
 		
@@ -61,19 +62,16 @@ public class App{
 		}
 		
 		System.out.println("----------");
-		sites = rechercheDAO.multicritere(null, null, "6", "7");
+		sites = rechercheDAO.multicritere(null, null, "6a", "7");
 		for (Site site : sites) {
 			
 			System.out.println("Nom : " + site.getNom() + "  Localité : " + site.getLocalite() );
 			
-			Collection<Secteur> secteurs = site.getSecteurs();
-			
-			for (Secteur secteur : secteurs) {
+			for (Secteur secteur : site.getSecteurs()) {
 				
 				System.out.println(secteur.getNom());
-				Collection<Voie> voies = secteur.getVoies();
 				
-				for(Voie voie : voies) {
+				for(Voie voie : secteur.getVoies()) {
 					System.out.println("Voie Nom : " + voie.getNom() + " Cotation : " + voie.getCotation());
 				}
 			}
@@ -96,6 +94,7 @@ public class App{
 		
 		SiteDAOImpl siteDAO = contexte.getBean(SiteDAOImpl.class);
 		List<Site> sites = siteDAO.lister(1);
+		Site dernierSite = siteDAO.chercherDernier();
 		
 		CommentaireDAOImpl cDAO = contexte.getBean(CommentaireDAOImpl.class);
 		List<Commentaire> commentaires = cDAO.lister(1);
@@ -113,7 +112,9 @@ public class App{
 		System.out.println("Les secteurs site 1 ----------------------");
 		for (Secteur s : secteurs) {
 			System.out.println(s.getNom() + " " + s.getHauteur());
-		}		
+		}
+		System.out.println("Dernier site  ----------------------");
+		System.out.println("id : " + dernierSite.getId() + " Nom : " + dernierSite.getNom());
 		System.out.println("Les sites membre 1 ----------------------");
 		for (Site s : sites) {
 			System.out.println(s.getNom());
