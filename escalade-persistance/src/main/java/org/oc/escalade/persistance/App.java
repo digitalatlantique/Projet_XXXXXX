@@ -31,7 +31,7 @@ public class App{
     public static void main( String[] args ){
     	
 		// Point d'entré du framework
-		ApplicationContext contexte = new ClassPathXmlApplicationContext("spring_conf_persistance.xml");
+		ApplicationContext contexte = new ClassPathXmlApplicationContext("daoContext.xml");
 		
 		//testDesObjetMetier(contexte);
 		testRechercheDAO(contexte);
