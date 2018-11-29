@@ -34,37 +34,37 @@ public class App{
 		ApplicationContext contexte = new ClassPathXmlApplicationContext("daoContext.xml");
 		
 		//testDesObjetMetier(contexte);
-		testRechercheDAO(contexte);
-			
-		
+		testRechercheDAO(contexte);		
     }
-
 	private static void testRechercheDAO(ApplicationContext contexte) {
+		
+		System.out.println("-----LISTE DES SITES PAR NOM-----");
 		RechercheDAOImpl rechercheDAO = contexte.getBean(RechercheDAOImpl.class);
 		List<Site> sites = rechercheDAO.parNomSite("la roche bernard");		
 		for (Site site : sites) {
 			System.out.println(site.getNom());
 		}
-		System.out.println("----------");
+		System.out.println("-----LISTE DES SITES PAR LOCALITE-----");
 		sites = rechercheDAO.parLocalite("i");
 		for (Site site : sites) {
 			System.out.println(site.getLocalite());
 		}
-		System.out.println("----------");
+		System.out.println("-----LISTE DES SITES PAR CODE POSTAL-----");
 		sites = rechercheDAO.parCodePostal("52150");
 		for (Site site : sites) {
 			System.out.println(site.getCodePostal());
 		}
-		System.out.println("----------");
+		System.out.println("-----LISTE DES SITES PAR MOT CLE-----");
 		sites = rechercheDAO.parMotCle("vitae");
 		for (Site site : sites) {
 			System.out.println(site.getPresentation());
 		}
 		
-		System.out.println("----------");
-		sites = rechercheDAO.multicritere(null, null, "6a");
+		System.out.println("----LISTE DES SITES MULTICRITERE------");
+
+		sites = rechercheDAO.multicritere("Falaise", null, null);
 		for (Site site : sites) {
-			
+			System.out.println("=========================");
 			System.out.println("Nom : " + site.getNom() + "  Localité : " + site.getLocalite() );
 			
 			for (Secteur secteur : site.getSecteurs()) {

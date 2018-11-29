@@ -3,6 +3,7 @@ package org.oc.escalade.modele;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -41,7 +42,7 @@ public class Site {
 	@OneToMany(mappedBy="site", cascade = CascadeType.ALL)
 	private Collection<Commentaire> commentaires = new ArrayList<Commentaire>();
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="site", cascade = CascadeType.ALL) //
+	@OneToMany(mappedBy="site", cascade = CascadeType.ALL) //
 	private Collection<Secteur> secteurs = new HashSet<Secteur>();
 	
 	@ManyToOne

@@ -1,5 +1,6 @@
 package org.oc.escalade.persistance.rechercheDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -10,6 +11,7 @@ import org.oc.escalade.modele.Voie;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Tuple;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import javax.persistence.metamodel.EntityType;
@@ -61,27 +63,64 @@ public class RechercheDAOImpl implements RechercheDAO {
 		
 		CriteriaBuilder cb = session.getCriteriaBuilder();
 		
-		CriteriaQuery<Site> cq = cb.createQuery(Site.class);
+		CriteriaQuery<Tuple> cq = cb.createTupleQuery();
 
 		Root<Site> site = cq.from(Site.class);
+		
 		Join<Site, Secteur> secteurs = site.join("secteurs");
 		Join<Secteur, Voie> voies = secteurs.join("voies");
 		
-		Predicate[] predicates = new Predicate[1];
-		/*-
-		predicates[0] = cb.or(cb.like(site.<String> get("nom"), "%"+nom+"%"),
-								cb.like(site.<String> get("localite"), "%"+localite+"%"));
-		*/
-		predicates[0] = cb.equal(voies.<String> get("cotation"), cotation);
-
-		cq.select(site).where(predicates).distinct(true); 
-		TypedQuery<Site> resultat= session.createQuery(cq);
+		Predicate predicate1 = cb.like(site.<String> get("nom"), "%"+nom+"%");
+		Predicate predicate2 = cb.like(site.<String> get("localite"), "%"+localite+"%");
+		Predicate predicate3 = cb.equal(voies.<String> get("cotation"), cotation);
 		
-		List<Site> sites = resultat.getResultList();
-		return sites;		
+		Predicate predicateFinal = cb.or(predicate1, predicate2, predicate3);
 
+		cq.multiselect(site, secteurs, voies).where(predicateFinal).distinct(true); 
+		TypedQuery<Tuple> resultat= session.createQuery(cq);
+		
+		List<?> temp = resultat.getResultList();
+		
+		List<Site> sites = new ArrayList<Site>();
+		List<Secteur> secteursTemp = null;
+		List<Voie> voiesTemp = null;
+		Site siteCourant = null;
+		Secteur secteurCourant = null;		
+		
+		for(int i=0; i<temp.size(); i++) {
+			
+			Site siteTemp =  ((Tuple) temp.get(i)).get(site);
+			Secteur secteurTemp = ((Tuple) temp.get(i)).get(secteurs); // un secteur
+			Voie voieTemp = ((Tuple) temp.get(i)).get(voies); // une voie
+
+			if(siteCourant == siteTemp && secteurCourant == secteurTemp) {
+				voiesTemp.add(voieTemp);
+			}
+			else if(siteCourant == siteTemp && secteurCourant != secteurTemp) {
+
+				secteurCourant = secteurTemp;				
+				voiesTemp = new ArrayList<Voie>();
+				voiesTemp.add(voieTemp);
+				secteurCourant.setVoies(voiesTemp);
+				secteursTemp.add(secteurCourant);
+			}
+			else {
+				siteCourant = siteTemp;
+				secteurCourant = secteurTemp;
+				
+				secteursTemp = new ArrayList<Secteur>();				
+				voiesTemp = new ArrayList<Voie>();
+				
+				voiesTemp.add(voieTemp);
+				secteursTemp.add(secteurTemp);
+				
+				secteurCourant.setVoies(voiesTemp);
+				siteCourant.setSecteurs(secteursTemp);
+				sites.add(siteCourant);
+			}
+		}		
+		return  sites;
 	}
-
 }
 
 
