@@ -13,7 +13,7 @@
         <dependent-module archiveName="escalade-modele-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/escalade-modele/escalade-modele">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <property name="java-output-path" value="/escalade-webApp/target/classes"/>
         <property name="context-root" value="escalade-webapp"/>
-        <property name="java-output-path" value="/escalade-webapp/target/classes"/>
     </wb-module>
 </project-modules>
