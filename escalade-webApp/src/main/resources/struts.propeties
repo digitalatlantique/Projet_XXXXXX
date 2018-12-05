@@ -1,0 +1,3 @@
+# Active le mode développement
+
+struts.devMode=true

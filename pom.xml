@@ -13,8 +13,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
   
   <!-- *************************************************************** -->
@@ -46,14 +46,21 @@
 		
 		<!-- Dépendances tiers -->
 		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-appserver</artifactId>
-			<version>2.11.1</version>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-core</artifactId>
+		    <version>2.11.1</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-jcl</artifactId>
+		    <version>2.11.1</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.1</version>
+			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -118,6 +125,26 @@
 		    <artifactId>postgresql</artifactId>
 		    <version>42.2.5</version>
 		</dependency>
+		
+		<!-- Struts -->
+		<dependency>
+		    <groupId>org.apache.struts</groupId>
+		    <artifactId>struts2-core</artifactId>
+		    <version>2.5.18</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-logging</groupId>
+		    <artifactId>commons-logging</artifactId>
+		    <version>1.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.struts.xwork</groupId>
+		    <artifactId>xwork-core</artifactId>
+		    <version>2.3.36</version>
+		</dependency>
+
+
+
 	</dependencies>
   </dependencyManagement>
 
@@ -165,10 +192,9 @@
   <!-- Modules -->
   <!-- *************************************************************** -->
   <modules>
-    <module>escalade-webapp</module>
+    <module>escalade-webApp</module>
     <module>escalade-service</module>
     <module>escalade-persistance</module>
     <module>escalade-modele</module>
-	<module>escalade-webApp</module>
   </modules>
 </project>
