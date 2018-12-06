@@ -55,17 +55,42 @@
 		<artifactId>javax.servlet-api</artifactId>
 	</dependency>
 	
-	<!-- Spring -->
-	<dependency>
-   		<groupId>org.springframework</groupId>
-   		<artifactId>spring-web</artifactId>
-   	</dependency>
+		<!-- Spring framework -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-orm</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-web</artifactId>
+		</dependency>
 
 		<!-- Struts -->
 		<dependency>
 		    <groupId>org.apache.struts</groupId>
 		    <artifactId>struts2-core</artifactId>
 		</dependency>
+		<dependency>
+		    <groupId>org.apache.struts</groupId>
+		    <artifactId>struts2-spring-plugin</artifactId>
+		</dependency>
+		
 		<dependency>
 		    <groupId>org.apache.struts.xwork</groupId>
 		    <artifactId>xwork-core</artifactId>

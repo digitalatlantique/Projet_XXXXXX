@@ -2,12 +2,17 @@ package org.oc.escalade.service.escaladeService;
 
 import java.util.List;
 
+
 import org.oc.escalade.modele.Site;
 import org.oc.escalade.persistance.escaladeDAO.SiteDAO;
 
 public class SiteServiceImpl implements SiteService<Site> {
-	
+
 	private SiteDAO siteDAO;
+	
+	public SiteServiceImpl() {
+
+	}
 	
 	public void setSiteDAO(SiteDAO siteDAO) {
 		this.siteDAO = siteDAO;
@@ -45,7 +50,7 @@ public class SiteServiceImpl implements SiteService<Site> {
 
 	@Override
 	public Site chercherDernier() {
-		
+
 		return (Site) siteDAO.chercherDernier();
 	}
 

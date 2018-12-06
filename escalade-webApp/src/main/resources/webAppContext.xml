@@ -7,8 +7,57 @@
             				http://www.springframework.org/schema/beans/spring-beans.xsd
             				http://www.springframework.org/schema/tx
             				http://www.springframework.org/schema/tx/spring-tx.xsd">
+    	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	
+	    <property name="driverClassName" value="org.postgresql.Driver"></property>
+		<property name="url" value="jdbc:postgresql://localhost:5432/escalade"></property>
+        <property name="username" value="admin"></property>
+        <property name="password" value="admin"></property>
+		
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="annotatedClasses">
+			<list>
+				<value>org.oc.escalade.modele.Commentaire</value>
+				<value>org.oc.escalade.modele.Membre</value>
+				<value>org.oc.escalade.modele.Secteur</value>
+				<value>org.oc.escalade.modele.Site</value>
+				<value>org.oc.escalade.modele.Topo</value>
+				<value>org.oc.escalade.modele.Voie</value>
+				<value>org.oc.escalade.modele.Location</value>
+				<value>org.oc.escalade.modele.LocationId</value>
+			</list>
+		</property>
+		
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
 
+	</bean>
+	
+	<tx:annotation-driven proxy-target-class="true"/>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>		
+	</bean>
 
+    <!-- ===== Déclaration des DAO ===== -->
+    <bean id="membreDAO" class="org.oc.escalade.persistance.escaladeDAO.MembreDAOImpl" autowire="byName"/>
+	<bean id="voieDAO" class="org.oc.escalade.persistance.escaladeDAO.VoieDAOImpl" autowire="byName"/>
+	<bean id="secteurDAO" class="org.oc.escalade.persistance.escaladeDAO.SecteurDAOImpl" autowire="byName"/>
+	<bean id="siteDAO" class="org.oc.escalade.persistance.escaladeDAO.SiteDAOImpl" autowire="byName"/>
+	<bean id="commentaireDAO" class="org.oc.escalade.persistance.escaladeDAO.CommentaireDAOImpl" autowire="byName"/>
+	<bean id="topoDAO" class="org.oc.escalade.persistance.escaladeDAO.TopoDAOImpl" autowire="byName"/>
+	<bean id="rechercheDAO" class="org.oc.escalade.persistance.rechercheDAO.RechercheDAOImpl" autowire="byName"/>        				
+	
+	<bean id="siteService" class="org.oc.escalade.service.escaladeService.SiteServiceImpl" autowire="byName"/>
+    
+    <bean id="indexEscaladeAction" class="org.oc.escalade.webapp.action.IndexEscaladeAction" autowire="byName"/>
 
 		
 </beans>

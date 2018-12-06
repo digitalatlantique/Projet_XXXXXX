@@ -11,6 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class SiteDAOImpl extends AbstractEscaladeDAO implements SiteDAO<Site> {
+	
+	public SiteDAOImpl() {
+
+	}
 
 	@Override
 	public Site enregistrer(Site site) {

@@ -1,3 +1,5 @@
 # Active le mode développement
-
 struts.devMode=true
+
+# Désactive l'autowiring
+struts.objectFactory.spring.autoWire=no

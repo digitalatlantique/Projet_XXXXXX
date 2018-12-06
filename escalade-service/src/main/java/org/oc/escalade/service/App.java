@@ -2,6 +2,8 @@ package org.oc.escalade.service;
 
 import org.oc.escalade.modele.Site;
 import org.oc.escalade.persistance.escaladeDAO.SiteDAOImpl;
+import org.oc.escalade.service.escaladeService.SiteService;
+import org.oc.escalade.service.escaladeService.SiteServiceImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,8 +13,8 @@ public class App{
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("serviceContext.xml");
 		
-		SiteDAOImpl sdi = context.getBean(SiteDAOImpl.class);
-		Site dernier = sdi.chercherDernier();
+		SiteService sdi = context.getBean(SiteServiceImpl.class);
+		Site dernier = (Site) sdi.chercherDernier();
 		
 		System.out.println(dernier.getNom());
     }
