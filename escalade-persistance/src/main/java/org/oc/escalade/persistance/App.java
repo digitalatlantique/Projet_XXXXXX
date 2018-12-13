@@ -40,7 +40,7 @@ public class App{
 		
 		System.out.println("-----LISTE DES SITES PAR NOM-----");
 		RechercheDAOImpl rechercheDAO = contexte.getBean(RechercheDAOImpl.class);
-		List<Site> sites = rechercheDAO.parNomSite("la roche bernard");		
+		List<Site> sites = rechercheDAO.parNomSite("falaise");		
 		for (Site site : sites) {
 			System.out.println(site.getNom());
 		}
