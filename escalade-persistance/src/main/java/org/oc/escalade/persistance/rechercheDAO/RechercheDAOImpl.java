@@ -55,7 +55,7 @@ public class RechercheDAOImpl implements RechercheDAO {
 		List<Site> sites = session.createQuery(req).list();		
 		return sites;
 	}
-
+	// TODO gestion de la casse
 	@Override
 	public List<Site> multicritere(String nom, String localite, String cotation) {
 		

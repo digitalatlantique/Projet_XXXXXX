@@ -13,11 +13,17 @@
         <!-- Action par défaut -->
         <default-action-ref name="index" />
 
-        <!-- Action "index" -->
-        <action name="index" class="org.oc.escalade.webapp.action.IndexEscaladeAction" method ="doSite">
-        
+        <!-- Action index -->
+        <action name="index" class="org.oc.escalade.webapp.action.IndexEscaladeAction" method="doSite">        
             <result>/jsp/index.jsp</result>
         </action>
+        
+        <!-- Recherche -->
+        <action name="recherche" class="org.oc.escalade.webapp.action.RechercheAction" method="doRecherche">
+        	<result name="input">/jsp/recherche/recherche.jsp</result> 
+        	<result name="success">/jsp/escalade/sites.jsp</result>       	
+        </action>
+
 
     </package>
 

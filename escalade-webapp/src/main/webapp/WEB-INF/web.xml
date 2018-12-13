@@ -13,7 +13,7 @@
     </listener>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:/webAppContext.xml</param-value>
+        <param-value>classpath:/bootstrapContext.xml</param-value>
     </context-param>
   
     <!-- Filter Struts -->
