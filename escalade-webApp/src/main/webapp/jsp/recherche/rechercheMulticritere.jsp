@@ -1,0 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Escalade-index</title>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	</head>
+	
+	<body>
+		<div class="container">
+		
+			<%@include file="../include/navigation.jsp" %>
+			
+			<form>
+			
+				<fieldset class="form-group">
+			
+					<div class="form-row">
+						<div class="col-7">
+						  	<input type="text" class="form-control" placeholder="Nom">
+						</div>
+						<div class="col">
+						  	<input type="text" class="form-control" placeholder="Localite">
+						</div>
+						<div class="col">
+						  	<input type="text" class="form-control" placeholder="Cotation">
+						</div>
+					</div>
+					  <div class="form-group row">
+						<div class="col-sm-10">
+						  <s:submit class="btn btn-primary" value="Rechercher"/>
+						</div>
+					  </div>
+				  
+				  </fieldset>
+			</form>
+			
+		</div>
+	</body>
+</html>

@@ -27,7 +27,7 @@
 			
 				  <div class="form-group row">
 					<div class="col-sm-10">
-					  <s:textfield class="form-control" name="saisie" />
+					  <s:textfield class="form-control" name="saisie" requiredLabel="true" />
 					</div>
 				  </div>
 			
@@ -37,6 +37,8 @@
 					</div>
 				  </div>
 			</s:form>
+			
+			<s:a action="rechercheMulticritere" >Recherche multicritère</s:a>
 
 		</div>
 	</body>
