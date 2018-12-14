@@ -13,6 +13,8 @@
 	<body>
 	
 		<div class="container">
+		
+			<%@include file="../include/navigation.jsp" %>
 	
 			<h1>Liste des sites</h1>
 			

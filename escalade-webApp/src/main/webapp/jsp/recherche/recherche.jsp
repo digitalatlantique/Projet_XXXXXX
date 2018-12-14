@@ -12,6 +12,9 @@
 	
 	<body>
 		<div class="container">
+		
+			<%@include file="../include/navigation.jsp" %>
+		
 			<s:form action="recherche">
 				 <fieldset class="form-group">
 					<div class="row">
@@ -24,7 +27,7 @@
 			
 				  <div class="form-group row">
 					<div class="col-sm-10">
-					  <s:textfield class="form-control" name="saisie" requiredLabel="true" />
+					  <s:textfield class="form-control" name="saisie" />
 					</div>
 				  </div>
 			

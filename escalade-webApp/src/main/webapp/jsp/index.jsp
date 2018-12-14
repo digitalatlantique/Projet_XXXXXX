@@ -13,13 +13,10 @@
 	<body>
 	
 		<div class="container">
-			<h1>Bienvenue sur le site communautaire de l'escalade</h1>
+						
+			<%@include file="include/navigation.jsp" %>
 			
-			<nav>
-				<s:a action="recherche">
-					Rechercher
-				</s:a>
-			</nav>
+			<h1>Bienvenue sur le site communautaire de l'escalade</h1>
 			
 			<h2>Dernier site ajouté : </h2>
 			

@@ -19,9 +19,9 @@ public class RechercheAction extends ActionSupport{
 	private String saisie;
 	
 	private static final String NOM = "nom";
-	private static final String LOCALITE = "localite";
-	private static final String CODE_POSTAL = "codePostal ";
-	private static final String MOT_CLE = "motCle ";
+	private static final String LOCALITE = "localité";
+	private static final String CODE_POSTAL = "code postal";
+	private static final String MOT_CLE = "mot clé";
 	
 	public RechercheAction() {
 		
