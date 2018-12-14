@@ -5,22 +5,23 @@ import java.util.List;
 
 import org.oc.escalade.modele.Site;
 import org.oc.escalade.service.escaladeService.SiteService;
+import org.oc.escalade.service.rechercheService.RechercheService;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 public class RechercheAction extends ActionSupport{
 	
-	private SiteService siteService;
+	private RechercheService rechercheService;
 	private List<Site> sites;
 	
 	private List<String> criteres;
 	private String choixCritere;
-	private String Saisie;
+	private String saisie;
 	
-	private static final String NOM = "nom ";
-	private static final String LOCALITE = "localité ";
-	private static final String CODE_POSTAL = "code postal ";
-	private static final String MOT_CLE = "mot clé ";
+	private static final String NOM = "nom";
+	private static final String LOCALITE = "localite";
+	private static final String CODE_POSTAL = "codePostal ";
+	private static final String MOT_CLE = "motCle ";
 	
 	public RechercheAction() {
 		
@@ -39,7 +40,25 @@ public class RechercheAction extends ActionSupport{
 		String resultat = ActionSupport.INPUT;
 		
 		if(this.choixCritere != null) {
-
+			
+			switch(choixCritere) {
+				case NOM : {
+					sites = rechercheService.parNomSite(saisie);
+					break;
+				}
+				case LOCALITE : {
+					sites = rechercheService.parLocalite(saisie);
+					break;
+				}
+				case CODE_POSTAL : {
+					sites = rechercheService.parCodePostal(saisie);
+					break;
+				}
+				case MOT_CLE : {
+					sites = rechercheService.parMotCle(saisie);
+					break;
+				}
+			}
 			resultat = ActionSupport.SUCCESS;
 		}
 		return resultat;
@@ -61,12 +80,23 @@ public class RechercheAction extends ActionSupport{
 	}
 
 	public String getSaisie() {
-		return Saisie;
+		return saisie;
 	}
 
 	public void setSaisie(String saisie) {
-		Saisie = saisie;
+		this.saisie = saisie;
 	}
 	
+	public void setRechercheService(RechercheService rechercheService) {
+		this.rechercheService = rechercheService;
+	}
+
+	public List<Site> getSites() {
+		return sites;
+	}
+
+	public void setSites(List<Site> sites) {
+		this.sites = sites;
+	}
 	
 }

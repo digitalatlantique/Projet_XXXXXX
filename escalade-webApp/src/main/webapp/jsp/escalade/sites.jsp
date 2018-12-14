@@ -12,8 +12,18 @@
 	
 	<body>
 	
-		<h1>Liste des sites</h1>
-		Choix du critère : <s:property value="choixCritere" /><br>
-		Saisie : <s:property value="saisie"/>
+		<div class="container">
+	
+			<h1>Liste des sites</h1>
+			
+			<s:iterator value="sites">
+			
+				<h2><s:property value="nom"/></h2>
+				Localité : <s:property value="codePostal"/> <s:property value="localite"/>
+				<p><s:property value="presentation"/></p>			
+			
+			</s:iterator>
+		
+		</div>
 	</body>
 </html>

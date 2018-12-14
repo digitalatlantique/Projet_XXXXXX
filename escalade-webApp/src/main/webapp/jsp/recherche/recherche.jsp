@@ -24,7 +24,7 @@
 			
 				  <div class="form-group row">
 					<div class="col-sm-10">
-					  <s:textfield class="form-control" name="Saisie" requiredLabel="true" />
+					  <s:textfield class="form-control" name="saisie" requiredLabel="true" />
 					</div>
 				  </div>
 			
