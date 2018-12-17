@@ -23,8 +23,11 @@
         	<result name="input">/jsp/recherche/recherche.jsp</result> 
         	<result name="success">/jsp/escalade/sites.jsp</result>       	
         </action>
-        <action name="rechercheMulticritere" class="org.oc.escalade.webapp.action.RechercheMulticritereAction" method="doRechercheMulticritere">
+        <action name="afficheRechercheMulticritere" class="org.oc.escalade.webapp.action.RechercheMulticritereAction" method="doAfficheRechercheMulticritere">
         	<result name="success">/jsp/recherche/rechercheMulticritere.jsp</result>
+        </action>
+        <action name="rechercheMulticritere" class="org.oc.escalade.webapp.action.RechercheMulticritereAction" method="doRechercheMulticritere">
+        	<result name="success">/jsp/escalade/sites.jsp</result>
         </action>
 
 

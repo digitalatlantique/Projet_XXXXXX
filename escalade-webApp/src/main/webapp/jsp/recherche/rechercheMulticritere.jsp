@@ -15,19 +15,19 @@
 		
 			<%@include file="../include/navigation.jsp" %>
 			
-			<form>
+			<form action="rechercheMulticritere">
 			
 				<fieldset class="form-group">
 			
 					<div class="form-row">
 						<div class="col-7">
-						  	<input type="text" class="form-control" placeholder="Nom">
+						  	<input type="text" class="form-control" placeholder="Nom" name="nom">
 						</div>
 						<div class="col">
-						  	<input type="text" class="form-control" placeholder="Localite">
+						  	<input type="text" class="form-control" placeholder="Localite" name="localite">
 						</div>
 						<div class="col">
-						  	<input type="text" class="form-control" placeholder="Cotation">
+						  	<input type="text" class="form-control" placeholder="Cotation" name="cotation">
 						</div>
 					</div>
 					  <div class="form-group row">

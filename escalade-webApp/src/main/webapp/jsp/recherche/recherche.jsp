@@ -38,7 +38,7 @@
 				  </div>
 			</s:form>
 			
-			<s:a action="rechercheMulticritere" >Recherche multicritère</s:a>
+			<s:a action="afficheRechercheMulticritere" >Recherche multicritère</s:a>
 
 		</div>
 	</body>

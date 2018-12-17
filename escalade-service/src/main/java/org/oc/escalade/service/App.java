@@ -26,5 +26,10 @@ public class App{
 		for (Site site : sites) {
 			System.out.println(site.getNom());
 		}
+		System.out.println("==========Recherche multi============");
+		sites = rs.multicritere("Falaise", null, "6b");
+		for (Site site : sites) {
+			System.out.println(site.getNom());
+		}
     }
 }
