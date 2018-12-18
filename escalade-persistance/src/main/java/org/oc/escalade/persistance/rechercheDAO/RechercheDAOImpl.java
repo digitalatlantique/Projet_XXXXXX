@@ -70,9 +70,9 @@ public class RechercheDAOImpl implements RechercheDAO {
 		Join<Site, Secteur> secteurs = site.join("secteurs");
 		Join<Secteur, Voie> voies = secteurs.join("voies");
 		
-		Predicate predicate1 = cb.like(site.<String> get("nom"), "%"+nom+"%");
-		Predicate predicate2 = cb.like(site.<String> get("localite"), "%"+localite+"%");
-		Predicate predicate3 = cb.equal(voies.<String> get("cotation"), cotation);
+		Predicate predicate1 = cb.like(cb.lower(site.<String> get("nom")), "%"+nom.toLowerCase()+"%");
+		Predicate predicate2 = cb.like(cb.lower(site.<String> get("localite")), "%"+localite.toLowerCase()+"%");
+		Predicate predicate3 = cb.equal(cb.lower(voies.<String> get("cotation")), cotation.toLowerCase());
 		
 		Predicate predicateFinal = cb.or(predicate1, predicate2, predicate3);
 
