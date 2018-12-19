@@ -1,6 +1,8 @@
 package org.oc.escalade.service.rechercheService;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.oc.escalade.modele.Site;
 import org.oc.escalade.persistance.rechercheDAO.RechercheDAO;
@@ -28,6 +30,9 @@ public class RechercheServiceImpl implements RechercheService {
 	@Override
 	public List<Site> parCodePostal(String codePostal) {
 		
+		if(!testerCodePostal(codePostal)) {
+			throw new IllegalArgumentException("Code postal invalide");
+		}
 		return rechercheDAO.parCodePostal(codePostal);
 	}
 
@@ -39,8 +44,15 @@ public class RechercheServiceImpl implements RechercheService {
 
 	@Override
 	public List<Site> multicritere(String nom, String localite, String cotation) {
-		
+
 		return rechercheDAO.multicritere(nom, localite, cotation);
 	}
 	
+	public boolean testerCodePostal(String codePostal) {
+		 Pattern p = Pattern.compile("[0-9]{5}");
+		 Matcher m = p.matcher(codePostal);
+		 return m.matches();
+		 
+	}
+		
 }

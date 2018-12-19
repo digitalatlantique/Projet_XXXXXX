@@ -8,6 +8,7 @@
 		<meta charset="UTF-8">
 		<title>Escalade-index</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<s:head />
 	</head>
 	
 	<body>
@@ -18,13 +19,18 @@
 	
 			<h1>Liste des sites</h1>
 			
-			<s:iterator value="sites">
+			<s:if test="#session.sites">
+				<s:iterator value="#session.sites">			
+					<h2><s:property value="nom"/></h2>
+					Localité : <s:property value="codePostal"/> <s:property value="localite"/>
+					<p><s:property value="presentation"/></p>			
+				</s:iterator>
+			</s:if>
+			<s:else>
+				Aucun résultat !
+			</s:else>
 			
-				<h2><s:property value="nom"/></h2>
-				Localité : <s:property value="codePostal"/> <s:property value="localite"/>
-				<p><s:property value="presentation"/></p>			
-			
-			</s:iterator>
+
 		
 		</div>
 	</body>

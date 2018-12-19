@@ -55,7 +55,7 @@ public class RechercheDAOImpl implements RechercheDAO {
 		List<Site> sites = session.createQuery(req).list();		
 		return sites;
 	}
-	// TODO gestion de la casse
+
 	@Override
 	public List<Site> multicritere(String nom, String localite, String cotation) {
 		
@@ -70,11 +70,14 @@ public class RechercheDAOImpl implements RechercheDAO {
 		Join<Site, Secteur> secteurs = site.join("secteurs");
 		Join<Secteur, Voie> voies = secteurs.join("voies");
 		
-		Predicate predicate1 = cb.like(cb.lower(site.<String> get("nom")), "%"+nom.toLowerCase()+"%");
-		Predicate predicate2 = cb.like(cb.lower(site.<String> get("localite")), "%"+localite.toLowerCase()+"%");
-		Predicate predicate3 = cb.equal(cb.lower(voies.<String> get("cotation")), cotation.toLowerCase());
-		
-		Predicate predicateFinal = cb.or(predicate1, predicate2, predicate3);
+		ArrayList<Predicate> predicate = new ArrayList<Predicate>();
+		// Gestion des prédicats avec champs vide.
+		if(!nom.isEmpty()) predicate.add(cb.like(cb.lower(site.<String> get("nom")), "%"+nom.toLowerCase()+"%"));
+		if(!localite.isEmpty()) predicate.add(cb.like(cb.lower(site.<String> get("localite")), "%"+localite.toLowerCase()+"%"));
+		if(!cotation.isEmpty()) predicate.add(cb.equal(cb.lower(voies.<String> get("cotation")), cotation.toLowerCase()));
+		Predicate[] predicateTab = new Predicate[1];
+		predicate.toArray(predicateTab);
+		Predicate predicateFinal = cb.or(predicateTab);
 
 		cq.multiselect(site, secteurs, voies).where(predicateFinal).distinct(true); 
 		TypedQuery<Tuple> resultat= session.createQuery(cq);

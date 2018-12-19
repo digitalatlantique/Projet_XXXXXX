@@ -2,21 +2,28 @@ package org.oc.escalade.webapp.action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.struts2.interceptor.SessionAware;
 import org.oc.escalade.modele.Site;
 import org.oc.escalade.service.escaladeService.SiteService;
 import org.oc.escalade.service.rechercheService.RechercheService;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class RechercheAction extends ActionSupport{
+public class RechercheAction extends ActionSupport implements SessionAware{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private RechercheService rechercheService;
 	private List<Site> sites;
 	
 	private List<String> criteres;
 	private String choixCritere;
 	private String saisie;
+	private Map<String, Object> session;
 	
 	private static final String NOM = "nom";
 	private static final String LOCALITE = "localité";
@@ -39,7 +46,11 @@ public class RechercheAction extends ActionSupport{
 	public String doRecherche() {
 		String resultat = ActionSupport.INPUT;
 		
-		if(this.choixCritere != null) {
+		if(choixCritere == null) {
+			return resultat;
+		}
+		
+		else if(!saisie.isEmpty()) {
 			
 			switch(choixCritere) {
 				case NOM : {
@@ -51,7 +62,14 @@ public class RechercheAction extends ActionSupport{
 					break;
 				}
 				case CODE_POSTAL : {
-					sites = rechercheService.parCodePostal(saisie);
+					try {
+						sites = rechercheService.parCodePostal(saisie);
+					}
+					catch(IllegalArgumentException e) {
+						this.addActionError(e.getMessage());
+						return resultat;
+					}
+					
 					break;
 				}
 				case MOT_CLE : {
@@ -59,7 +77,11 @@ public class RechercheAction extends ActionSupport{
 					break;
 				}
 			}
+			session.put("sites", sites);
 			resultat = ActionSupport.SUCCESS;
+		}
+		else {
+			this.addActionError("Champ requis !");
 		}
 		return resultat;
 	}
@@ -97,6 +119,12 @@ public class RechercheAction extends ActionSupport{
 
 	public void setSites(List<Site> sites) {
 		this.sites = sites;
+	}
+
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+		
 	}
 	
 }

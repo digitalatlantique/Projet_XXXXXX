@@ -15,6 +15,8 @@
 		
 			<%@include file="../include/navigation.jsp" %>
 			
+			<s:actionerror/>
+			
 			<form action="rechercheMulticritere">
 			
 				<fieldset class="form-group">

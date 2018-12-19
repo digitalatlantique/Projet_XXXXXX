@@ -20,17 +20,45 @@
         
         <!-- Recherche -->
         <action name="recherche" class="org.oc.escalade.webapp.action.RechercheAction" method="doRecherche">
+            <interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
         	<result name="input">/jsp/recherche/recherche.jsp</result> 
-        	<result name="success">/jsp/escalade/sites.jsp</result>       	
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">afficherSite</param>
+        	</result>      	
         </action>
         <action name="afficheRechercheMulticritere" class="org.oc.escalade.webapp.action.RechercheMulticritereAction" method="doAfficheRechercheMulticritere">
+        	    <interceptor-ref name="store">
+			        <param name="operationMode">RETRIEVE</param>			
+			    </interceptor-ref>
+    			<interceptor-ref name="defaultStack" />
+    			
         	<result name="success">/jsp/recherche/rechercheMulticritere.jsp</result>
         </action>
+        
         <action name="rechercheMulticritere" class="org.oc.escalade.webapp.action.RechercheMulticritereAction" method="doRechercheMulticritere">
+            <interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+		    
+		    <result name="input">/jsp/recherche/rechercheMulticritere.jsp</result>
+		    
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">afficherSite</param>
+        	</result>
+        </action>
+        
+        <!-- Site -->
+        <action name="afficherSite" class="org.oc.escalade.webapp.action.SiteAction" method="doSite">
+                <interceptor-ref name="store">
+			        <param name="operationMode">RETRIEVE</param>			
+			    </interceptor-ref>
+    			<interceptor-ref name="defaultStack" />
+    		<result name="input">/jsp/escalade/sites.jsp</result>
         	<result name="success">/jsp/escalade/sites.jsp</result>
         </action>
-
-
     </package>
-
 </struts>

@@ -14,6 +14,8 @@
 		<div class="container">
 		
 			<%@include file="../include/navigation.jsp" %>
+			
+			<s:actionerror/>
 		
 			<s:form action="recherche">
 				 <fieldset class="form-group">
