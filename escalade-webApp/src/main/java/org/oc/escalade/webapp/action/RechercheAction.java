@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
+import org.oc.escalade.modele.Secteur;
 import org.oc.escalade.modele.Site;
+import org.oc.escalade.modele.Voie;
 import org.oc.escalade.service.escaladeService.SiteService;
 import org.oc.escalade.service.rechercheService.RechercheService;
 
@@ -77,6 +79,7 @@ public class RechercheAction extends ActionSupport implements SessionAware{
 					break;
 				}
 			}
+
 			session.put("sites", sites);
 			resultat = ActionSupport.SUCCESS;
 		}

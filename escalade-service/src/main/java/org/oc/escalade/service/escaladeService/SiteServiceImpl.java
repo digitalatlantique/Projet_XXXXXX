@@ -26,8 +26,8 @@ public class SiteServiceImpl implements SiteService<Site> {
 
 	@Override
 	public Site chercher(int identifiant) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (Site) siteDAO.chercher(identifiant);
 	}
 
 	@Override

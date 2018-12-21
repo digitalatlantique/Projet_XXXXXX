@@ -62,7 +62,7 @@ public class App{
 		
 		System.out.println("----LISTE DES SITES MULTICRITERE------");
 
-		sites = rechercheDAO.multicritere("Falaise", null, null);
+		sites = rechercheDAO.multicritere("Falaise", "", "");
 		for (Site site : sites) {
 			System.out.println("=========================");
 			System.out.println("Nom : " + site.getNom() + "  Localité : " + site.getLocalite() );

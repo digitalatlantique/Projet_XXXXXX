@@ -18,7 +18,8 @@ public class RechercheServiceImpl implements RechercheService {
 	@Override
 	public List<Site> parNomSite(String nom) {
 		
-		return rechercheDAO.parNomSite(nom);
+		List<Site> sites = rechercheDAO.parNomSite(nom);
+		return sites;
 	}
 
 	@Override

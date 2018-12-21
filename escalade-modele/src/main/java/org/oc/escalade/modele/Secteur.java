@@ -1,20 +1,25 @@
 package org.oc.escalade.modele;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name="secteur")
-public class Secteur {
+public class Secteur implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="secteur_id")
@@ -32,7 +37,7 @@ public class Secteur {
 	@JoinColumn(name="site_id", nullable=false)
 	private Site site;
 	
-	@OneToMany(mappedBy="secteur") //  
+	@OneToMany(mappedBy="secteur", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private Collection<Voie> voies = new HashSet<Voie>();
 	
 	
@@ -42,11 +47,7 @@ public class Secteur {
 	public Secteur(String nom) {
 		this.nom = nom;
 	}
-	
-	public Collection<Voie> recupererVoies(){
-		return voies;
-	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -93,6 +94,10 @@ public class Secteur {
 
 	public void setVoies(Collection<Voie> voies) {
 		this.voies = voies;
-	}	
+	}
+	
+	public String toString() {
+		return "Nom : " + nom;
+	}
 
 }

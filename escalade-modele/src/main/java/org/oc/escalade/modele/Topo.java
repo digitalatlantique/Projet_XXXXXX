@@ -1,6 +1,7 @@
 package org.oc.escalade.modele;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -8,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="topo")
-public class Topo {
+public class Topo implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

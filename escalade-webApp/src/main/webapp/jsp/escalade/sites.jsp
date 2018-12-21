@@ -21,7 +21,10 @@
 			
 			<s:if test="#session.sites">
 				<s:iterator value="#session.sites">			
-					<h2><s:property value="nom"/></h2>
+					<s:a action="siteDetail">						
+						<h2><s:property value="nom"/></h2>					
+						<s:param name="id" value="id"/>					
+					</s:a>
 					Localité : <s:property value="codePostal"/> <s:property value="localite"/>
 					<p><s:property value="presentation"/></p>			
 				</s:iterator>

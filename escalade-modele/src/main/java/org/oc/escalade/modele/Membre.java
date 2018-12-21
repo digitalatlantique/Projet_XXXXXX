@@ -1,5 +1,6 @@
 package org.oc.escalade.modele;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="membre", uniqueConstraints=@UniqueConstraint(columnNames= {"nom", "prenom"}))
-public class Membre {	
+public class Membre implements Serializable {	
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

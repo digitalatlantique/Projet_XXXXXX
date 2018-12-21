@@ -1,10 +1,12 @@
 package org.oc.escalade.modele;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="voie")
-public class Voie {
+public class Voie implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package org.oc.escalade.modele;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -7,12 +8,20 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 
 
 @Entity
 @Table(name="site")
-public class Site {
+public class Site implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="site_id")
@@ -42,7 +51,7 @@ public class Site {
 	@OneToMany(mappedBy="site", cascade = CascadeType.ALL)
 	private Collection<Commentaire> commentaires = new ArrayList<Commentaire>();
 	
-	@OneToMany(mappedBy="site", cascade = CascadeType.ALL) //
+	@OneToMany(mappedBy="site", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private Collection<Secteur> secteurs = new HashSet<Secteur>();
 	
 	@ManyToOne

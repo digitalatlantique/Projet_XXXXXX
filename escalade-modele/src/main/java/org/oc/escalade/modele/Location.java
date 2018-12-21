@@ -1,12 +1,13 @@
 package org.oc.escalade.modele;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="location")
-public class Location {
+public class Location implements Serializable{
 	
 	@Id
 	LocationId location_id;

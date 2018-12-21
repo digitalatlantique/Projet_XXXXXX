@@ -30,28 +30,44 @@ public class RechercheDAOImpl implements RechercheDAO {
 	public List<Site> parNomSite(String nom) {
 
 		Session session = sessionFactory.getCurrentSession();
-		String req = "FROM Site s WHERE lower(s.nom) like '%"+ nom.toLowerCase() +"%'";
+		String req = "SELECT DISTINCT s "
+					+ "FROM Site s "
+					+ "JOIN s.secteurs se "
+					+ "JOIN se.voies v "
+					+ "WHERE lower(s.nom) like '%"+ nom.toLowerCase() +"%'";
 		List<Site> sites = session.createQuery(req).list();		
 		return sites;
 	}
 
 	public List<Site> parLocalite(String localite) {
 		Session session = sessionFactory.getCurrentSession();
-		String req = "FROM Site s WHERE lower(s.localite) like '%"+ localite.toLowerCase() +"%'";
+		String req = "SELECT DISTINCT s "
+					+ "FROM Site s "
+					+ "JOIN s.secteurs se "
+					+ "JOIN se.voies v "
+					+ "WHERE lower(s.localite) like '%"+ localite.toLowerCase() +"%'";
 		List<Site> sites = session.createQuery(req).list();		
 		return sites;
 	}
 
 	public List<Site> parCodePostal(String codePostal) {
 		Session session = sessionFactory.getCurrentSession();
-		String req = "FROM Site s WHERE s.codePostal = :cp";
+		String req = "SELECT DISTINCT s "
+					+ "FROM Site s "
+					+ "JOIN s.secteurs se "
+					+ "JOIN se.voies v "
+					+ "WHERE s.codePostal = :cp";
 		List<Site> sites = session.createQuery(req).setParameter("cp", codePostal).list();		
 		return sites;
 	}
 
 	public List<Site> parMotCle(String motCle) {
 		Session session = sessionFactory.getCurrentSession();
-		String req = "FROM Site s WHERE lower(s.presentation) like '%"+ motCle.toLowerCase() +"%'";
+		String req = "SELECT DISTINCT s "
+					+ "FROM Site s "
+					+ "JOIN s.secteurs se "
+					+ "JOIN se.voies v "
+					+ "WHERE lower(s.presentation) like '%"+ motCle.toLowerCase() +"%'";
 		List<Site> sites = session.createQuery(req).list();		
 		return sites;
 	}
@@ -72,10 +88,20 @@ public class RechercheDAOImpl implements RechercheDAO {
 		
 		ArrayList<Predicate> predicate = new ArrayList<Predicate>();
 		// Gestion des prédicats avec champs vide.
-		if(!nom.isEmpty()) predicate.add(cb.like(cb.lower(site.<String> get("nom")), "%"+nom.toLowerCase()+"%"));
-		if(!localite.isEmpty()) predicate.add(cb.like(cb.lower(site.<String> get("localite")), "%"+localite.toLowerCase()+"%"));
-		if(!cotation.isEmpty()) predicate.add(cb.equal(cb.lower(voies.<String> get("cotation")), cotation.toLowerCase()));
-		Predicate[] predicateTab = new Predicate[1];
+		int compteur = 0;
+		if(!nom.isEmpty()) {
+			 predicate.add(cb.like(cb.lower(site.<String> get("nom")), "%"+nom.toLowerCase()+"%"));
+			 compteur++;
+		}
+		if(!localite.isEmpty()) {
+			predicate.add(cb.like(cb.lower(site.<String> get("localite")), "%"+localite.toLowerCase()+"%"));
+			compteur++;
+		} 
+		if(!cotation.isEmpty()) {
+			predicate.add(cb.equal(cb.lower(voies.<String> get("cotation")), cotation.toLowerCase()));
+			compteur++;
+		} 
+		Predicate[] predicateTab = new Predicate[compteur];
 		predicate.toArray(predicateTab);
 		Predicate predicateFinal = cb.or(predicateTab);
 

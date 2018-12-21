@@ -60,5 +60,8 @@
     		<result name="input">/jsp/escalade/sites.jsp</result>
         	<result name="success">/jsp/escalade/sites.jsp</result>
         </action>
+        <action name="siteDetail" class="org.oc.escalade.webapp.action.SiteDetailAction" method="doDetail">
+        	<result name="success">/jsp/escalade/siteDetail.jsp</result>
+        </action>
     </package>
 </struts>
