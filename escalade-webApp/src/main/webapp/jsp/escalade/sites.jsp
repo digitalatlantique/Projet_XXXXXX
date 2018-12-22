@@ -25,7 +25,8 @@
 						<h2><s:property value="nom"/></h2>					
 						<s:param name="id" value="id"/>					
 					</s:a>
-					Localité : <s:property value="codePostal"/> <s:property value="localite"/>
+					Localité : <s:property value="codePostal"/> <s:property value="localite"/><br>
+					<img src="images/images_sites/<s:property value="imagePath"/>"/>
 					<p><s:property value="presentation"/></p>			
 				</s:iterator>
 			</s:if>

@@ -22,7 +22,8 @@
 			<s:iterator value="site.secteurs">
 				<h3>Secteur : <s:property value="nom"/></h3>
 				
-				Hauteur : <s:property value="hauteur"/><br>
+				Hauteur : <s:property value="hauteur"/> m<br>
+				<img src="images/images_secteurs/<s:property value="imagePath"/>"/>
 				
 					<s:iterator value="voies">
 						<h4>Voie n° : <s:property value="numero"/></h4>

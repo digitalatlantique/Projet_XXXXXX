@@ -21,9 +21,8 @@
 			<h2>Dernier site ajouté : </h2>
 			
 			<h3><s:property value="dernierSite.nom"/></h3>
-			Présentation :
-			<p>
-				 
+			<img src="images/images_sites/<s:property value="dernierSite.imagePath"/>"/>
+			<p>				 
 				<s:property value="dernierSite.presentation"/>
 			</p>
 			Localité : <s:property value="dernierSite.localite"/> <br>
