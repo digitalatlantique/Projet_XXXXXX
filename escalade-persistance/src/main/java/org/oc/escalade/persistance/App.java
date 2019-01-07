@@ -33,8 +33,8 @@ public class App{
 		// Point d'entré du framework
 		ApplicationContext contexte = new ClassPathXmlApplicationContext("daoContext.xml");
 		
-		//testDesObjetMetier(contexte);
-		testRechercheDAO(contexte);		
+		testDesObjetMetier(contexte);
+		//testRechercheDAO(contexte);		
     }
 	private static void testRechercheDAO(ApplicationContext contexte) {
 		
@@ -77,6 +77,8 @@ public class App{
 			}
 			
 		}
+
+		
 	}
 
 	private static void testDesObjetMetier(ApplicationContext contexte) {
@@ -84,7 +86,12 @@ public class App{
 	
 		MembreDAOImpl mDAO = contexte.getBean(MembreDAOImpl.class);
 		
+		System.out.println("----------Identification d'un membre par ID-----------");
 		Membre membre = mDAO.chercher(1);
+		System.out.println(membre.getNom() + " " + membre.getPrenom());
+		System.out.println("----------Identification d'un membre par email et pass-----------");
+		membre= mDAO.authentifier("pierre@yahoo.fr", "Pierre");
+		System.out.println(membre.getNom() + " " + membre.getPrenom());
 		
 		VoieDAOImpl vDAO = contexte.getBean(VoieDAOImpl.class);
 		List<Voie> voies = vDAO.lister(1);
@@ -102,7 +109,7 @@ public class App{
 		TopoDAOImpl tDAO = contexte.getBean(TopoDAOImpl.class);
 		List<Topo> topos = tDAO.lister(1);
 		
-		System.out.println(membre.getNom() + " " + membre.getPrenom());
+
 		
 		System.out.println("Les voies secteur 1 -------------------------");
 		for (Voie voie2 : voies) {

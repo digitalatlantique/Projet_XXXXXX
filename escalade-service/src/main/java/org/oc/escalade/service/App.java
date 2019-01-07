@@ -2,10 +2,13 @@ package org.oc.escalade.service;
 
 import java.util.List;
 
+import org.oc.escalade.modele.Membre;
 import org.oc.escalade.modele.Secteur;
 import org.oc.escalade.modele.Site;
 import org.oc.escalade.modele.Voie;
 import org.oc.escalade.persistance.escaladeDAO.SiteDAOImpl;
+import org.oc.escalade.service.escaladeService.MembreService;
+import org.oc.escalade.service.escaladeService.MembreServiceImpl;
 import org.oc.escalade.service.escaladeService.SiteService;
 import org.oc.escalade.service.escaladeService.SiteServiceImpl;
 import org.oc.escalade.service.rechercheService.RechercheService;
@@ -18,6 +21,13 @@ public class App{
 	public static void main( String[] args ){
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("serviceContext.xml");
+		
+		
+		MembreServiceImpl membreServiceImpl = context.getBean(MembreServiceImpl.class);
+		System.out.println("=========Recherche membre par email et pass");
+		Membre membre = (Membre) membreServiceImpl.authentifier("pierre@yahoo.fr", "Pierre");
+		System.out.println(membre.getPrenom());
+		
 		
 		SiteService sdi = context.getBean(SiteServiceImpl.class);
 		Site dernier = (Site) sdi.chercherDernier();		

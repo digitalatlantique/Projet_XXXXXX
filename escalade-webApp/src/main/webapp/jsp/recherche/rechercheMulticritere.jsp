@@ -23,13 +23,13 @@
 			
 					<div class="form-row">
 						<div class="col-7">
-						  	<input type="text" class="form-control" placeholder="Nom" name="nom">
+						  	<s:textfield class="form-control" placeholder="Nom" name="nom" />
 						</div>
 						<div class="col">
-						  	<input type="text" class="form-control" placeholder="Localite" name="localite">
+						  	<s:textfield class="form-control" placeholder="Localite" name="localite" />
 						</div>
 						<div class="col">
-						  	<input type="text" class="form-control" placeholder="Cotation" name="cotation">
+						  	<s:textfield class="form-control" placeholder="Cotation" name="cotation" />
 						</div>
 					</div>
 					  <div class="form-group row">

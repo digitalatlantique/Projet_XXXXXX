@@ -1,5 +1,7 @@
 package org.oc.escalade.persistance.escaladeDAO;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -10,14 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public class MembreDAOImpl extends AbstractEscaladeDAO implements EscaladeDAO<Membre> {
-	
-	protected SessionFactory sessionFactory;	
-
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+public class MembreDAOImpl extends AbstractEscaladeDAO implements MembreDAO<Membre> {
 
 	@Override
 	public Membre enregistrer(Membre membre) {
@@ -58,5 +53,15 @@ public class MembreDAOImpl extends AbstractEscaladeDAO implements EscaladeDAO<Me
 		return null;
 	}
 
+	@Override
+	public Membre authentifier(String email, String password) {		
+		
+		Session session = sessionFactory.getCurrentSession();
+		String requete = "FROM Membre m WHERE email = :email AND password = :password";
+		return session.createQuery(requete, Membre.class)
+		.setParameter("email", email)
+		.setParameter("password", password).uniqueResult();
+		
+	}
 
 }

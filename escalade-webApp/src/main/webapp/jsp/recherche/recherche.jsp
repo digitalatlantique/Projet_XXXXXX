@@ -29,7 +29,7 @@
 			
 				  <div class="form-group row">
 					<div class="col-sm-10">
-					  <s:textfield class="form-control" name="saisie" requiredLabel="true" />
+					  <s:textfield class="form-control" name="saisie" placeholder="Saisir un critère" requiredLabel="true" />
 					</div>
 				  </div>
 			
