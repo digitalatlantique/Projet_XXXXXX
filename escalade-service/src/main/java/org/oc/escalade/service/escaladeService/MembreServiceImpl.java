@@ -27,7 +27,10 @@ public class MembreServiceImpl implements MembreService {
 			throw new IllegalArgumentException("Membre existant !");
 		}
 		else {
+			String pass = Cryptage.crypter(membre.getPassword());
+			membre.setPassword(pass);
 			membre.setCompteValide(true);
+			membreDAO.enregistrer(membre);
 			return membre;
 		}
 		
