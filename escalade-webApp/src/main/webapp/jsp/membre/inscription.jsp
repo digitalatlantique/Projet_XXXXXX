@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Authentification</title>
+		<title>Inscription</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	</head>
 	
@@ -16,21 +16,27 @@
 						
 			<%@include file="../include/navigation.jsp" %>
 
-			<h1>Authentification</h1>
+			<h1>Inscription</h1>
 			
-			<s:actionmessage/>
 			<s:actionerror/>
 			
-			<form action="membre">
+			<form action="inscription">
+				<div class="form-group">
+					<s:textfield class="form-control" name="nom" placeholder="Votre nom" />
+				</div>
+				<div class="form-group">
+					<s:textfield class="form-control" name="prenom" placeholder="Votre prénom" />
+				</div>
 				<div class="form-group">
 					<s:textfield class="form-control" name="email" placeholder="Votre email" />
 				</div>
 				<div class="form-group">
 					<s:password class="form-control" name="password" placeholder="Mot de passe" />
 				</div>
-				<button type="submit" class="btn btn-primary">Connexion</button><br>
-				<s:a action="inscription">Inscription</s:a>
-			</form>		
+				<button type="submit" class="btn btn-primary">Inscription</button>
+			</form>
+
+		
 		</div>
 
 	</body>

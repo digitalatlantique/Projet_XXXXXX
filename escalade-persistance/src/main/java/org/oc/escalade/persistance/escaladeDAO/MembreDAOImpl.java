@@ -1,18 +1,14 @@
 package org.oc.escalade.persistance.escaladeDAO;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
 import java.util.List;
-
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.oc.escalade.modele.Membre;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public class MembreDAOImpl extends AbstractEscaladeDAO implements MembreDAO<Membre> {
+public class MembreDAOImpl extends AbstractEscaladeDAO implements MembreDAO {
 
 	@Override
 	public Membre enregistrer(Membre membre) {
@@ -62,6 +58,18 @@ public class MembreDAOImpl extends AbstractEscaladeDAO implements MembreDAO<Memb
 		.setParameter("email", email)
 		.setParameter("password", password).uniqueResult();
 		
+	}
+
+	@Override
+	public Membre verifierDoublon(Membre membre) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		String requete = "FROM Membre m WHERE lower(nom) = :nom AND lower(prenom) = :prenom";
+		return session.createQuery(requete, Membre.class)
+		.setParameter("nom", membre.getNom().toLowerCase())
+		.setParameter("prenom", membre.getPrenom().toLowerCase())
+		.uniqueResult();		
+
 	}
 
 }

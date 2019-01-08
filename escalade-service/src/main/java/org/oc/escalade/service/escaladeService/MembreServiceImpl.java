@@ -3,11 +3,11 @@ package org.oc.escalade.service.escaladeService;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+import org.oc.escalade.modele.Membre;
 import org.oc.escalade.persistance.escaladeDAO.MembreDAO;
 import org.oc.escalade.utile.Cryptage;
 
-public class MembreServiceImpl<Membre> implements MembreService<Membre> {
+public class MembreServiceImpl implements MembreService {
 	
 	MembreDAO membreDAO;	
 
@@ -16,9 +16,21 @@ public class MembreServiceImpl<Membre> implements MembreService<Membre> {
 	}
 
 	@Override
-	public Membre enregistrer(Membre objet) {
-		// TODO Auto-generated method stub
-		return null;
+	public Membre enregistrer(Membre membre) {
+		
+		Membre membreTemp = membreDAO.verifierDoublon(membre);
+		
+		if(!validerEmail(membre.getEmail())) {
+			throw new IllegalArgumentException("Email invalide !");
+		}
+		else if(membreTemp != null) {
+			throw new IllegalArgumentException("Membre existant !");
+		}
+		else {
+			membre.setCompteValide(true);
+			return membre;
+		}
+		
 	}
 
 	@Override
@@ -28,7 +40,7 @@ public class MembreServiceImpl<Membre> implements MembreService<Membre> {
 	}
 
 	@Override
-	public void modifier(Membre objet) {
+	public void modifier(Membre membre) {
 		// TODO Auto-generated method stub
 		
 	}

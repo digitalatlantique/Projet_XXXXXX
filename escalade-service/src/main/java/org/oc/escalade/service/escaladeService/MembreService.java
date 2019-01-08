@@ -1,7 +1,9 @@
 package org.oc.escalade.service.escaladeService;
 
-public interface MembreService<T> extends EscaladeService<T> {
+import org.oc.escalade.modele.Membre;
+
+public interface MembreService extends EscaladeService<Membre> {
 	
-	T authentifier(String email, String password);
+	Membre authentifier(String email, String password);
 
 }

@@ -89,9 +89,13 @@ public class App{
 		System.out.println("----------Identification d'un membre par ID-----------");
 		Membre membre = mDAO.chercher(1);
 		System.out.println(membre.getNom() + " " + membre.getPrenom());
-		System.out.println("----------Identification d'un membre par email et pass-----------");
-		membre= mDAO.authentifier("pierre@yahoo.fr", "Pierre");
-		System.out.println(membre.getNom() + " " + membre.getPrenom());
+
+		System.out.println("----------Identification d'un membre par nom et prenom-----------");
+		Membre m = new Membre();
+		m.setNom("cordier");
+		m.setPrenom("patrick");
+		membre= mDAO.verifierDoublon(m);
+		System.out.println(membre.getNom() + " " + membre.getPrenom());		
 		
 		VoieDAOImpl vDAO = contexte.getBean(VoieDAOImpl.class);
 		List<Voie> voies = vDAO.lister(1);

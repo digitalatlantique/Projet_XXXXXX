@@ -44,11 +44,12 @@ public class Membre implements Serializable {
 		
 	}	
 	
-	public Membre(String nom, String prenom, String email) {
+	public Membre(String nom, String prenom, String email, String password) {
 
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
+		this.password = password;
 	}
 	
 	public void ajouterSite(Site site) {

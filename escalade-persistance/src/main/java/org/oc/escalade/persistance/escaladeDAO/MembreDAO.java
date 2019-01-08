@@ -1,7 +1,9 @@
 package org.oc.escalade.persistance.escaladeDAO;
 
-public interface MembreDAO<T> extends EscaladeDAO<T> {
-	
-	T authentifier(String email, String password);
+import org.oc.escalade.modele.Membre;
 
+public interface MembreDAO extends EscaladeDAO<Membre> {
+	
+	Membre authentifier(String email, String password);
+	Membre verifierDoublon(Membre membre);
 }
