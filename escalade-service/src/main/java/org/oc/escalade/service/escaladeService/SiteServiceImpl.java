@@ -20,8 +20,8 @@ public class SiteServiceImpl implements SiteService<Site> {
 
 	@Override
 	public Site enregistrer(Site site) {
-		// TODO Auto-generated method stub
-		return null;
+		siteDAO.enregistrer(site);
+		return site;
 	}
 
 	@Override
@@ -32,20 +32,19 @@ public class SiteServiceImpl implements SiteService<Site> {
 
 	@Override
 	public void modifier(Site site) {
-		// TODO Auto-generated method stub
+		siteDAO.modifier(site);
 		
 	}
 
 	@Override
 	public void supprimer(int identifiant) {
-		// TODO Auto-generated method stub
-		
+		siteDAO.supprimer(identifiant);		
 	}
 
 	@Override
 	public List<Site> lister(int identifiant) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return siteDAO.lister(identifiant);
 	}
 
 	@Override

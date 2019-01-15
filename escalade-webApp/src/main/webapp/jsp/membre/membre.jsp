@@ -16,8 +16,8 @@
 						
 			<%@include file="../include/navigation.jsp" %>
 			
-			<h1>Bienvenue <s:property value="#session.membre.nom"/> sur ton espace membre</h1>
-
+			<h1>Bienvenue <s:property value="#session.membre.prenom"/> sur ton espace membre</h1>
+			<s:actionmessage/>
 		
 		</div>
 

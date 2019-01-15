@@ -9,8 +9,12 @@
       </li>
       <s:if test="#session.membre">
 	      <li class="nav-item">
+	        <s:a class="nav-link" action="mesSites">Mes sites</s:a>
+	      </li>
+	      <li class="nav-item">
 	        <s:a class="nav-link" action="deconnexion">Déconnexion</s:a>
 	      </li>
+
       </s:if>
 
       <li class="nav-item">

@@ -62,5 +62,7 @@
     <bean id="indexEscaladeAction" class="org.oc.escalade.webapp.action.IndexEscaladeAction" autowire="byName"/>
     <bean id="rechercheAction" class="org.oc.escalade.webapp.action.RechercheAction" autowire="byName" />
     <bean id="rechercheMulticritereAction" class="org.oc.escalade.webapp.action.RechercheMulticritereAction" autowire="byName" />
- 	<bean id="inscriptionAction" class="org.oc.escalade.webapp.action.InscriptionAction" autowire="byName" />	
+ 	<bean id="inscriptionAction" class="org.oc.escalade.webapp.action.InscriptionAction" autowire="byName" />
+ 	<bean id="siteFormulaireAction" class="org.oc.escalade.webapp.action.SiteFormulaireAction" autowire="byName" />	
+ 	<bean id="siteAction" class="org.oc.escalade.webapp.action.SiteAction" autowire="byName" />
 </beans>

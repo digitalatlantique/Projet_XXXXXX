@@ -74,10 +74,9 @@
 		        <param name="operationMode">RETRIEVE</param>			
 		    </interceptor-ref>
    			<interceptor-ref name="defaultStack" />
-    		<result name="input">/jsp/escalade/sites.jsp</result>
         	<result name="success">/jsp/escalade/sites.jsp</result>
         </action>
-        <action name="siteDetail" class="org.oc.escalade.webapp.action.SiteDetailAction" method="doDetail">
+        <action name="siteDetail" class="org.oc.escalade.webapp.action.SiteAction" method="doDetail">
         	<result name="success">/jsp/escalade/siteDetail.jsp</result>
         </action>
         
@@ -106,11 +105,53 @@
     
     <!-- ==== Package pour l'espace membre ==== -->
     <package name="prive" extends="base">
-   	
+   		<!-- Déconnection du membre -->
     	<default-interceptor-ref name="authentificationPile"/>
         <action name="deconnexion" class="org.oc.escalade.webapp.action.MembreAction" method="doDeconnexion">
     		<result name="success">/jsp/membre/authentification.jsp</result>
-    	</action>    	
+    	</action>  
+    	
+    	<!-- Gestion des sites du membre -->
+    	<action name="formulaireSite">
+    		<result name="success">/jsp/escalade/siteFormulaire.jsp</result>
+    	</action>  
+    	<action name="creerSite" class="org.oc.escalade.webapp.action.SiteFormulaireAction" method="doNouveauSite">
+    	   	<interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+		    <result name="error">/jsp/escalade/siteFormulaire.jsp</result>
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSites</param>
+    		</result>
+    	</action>
+    	<action name="mesSites" class="org.oc.escalade.webapp.action.SiteAction" method="doMesSites">
+            <interceptor-ref name="store">
+		        <param name="operationMode">RETRIEVE</param>			
+		    </interceptor-ref>
+   			<interceptor-ref name="defaultStack" />
+    		<result>/jsp/membre/mesSites.jsp</result>
+    	</action>
+    	<action name="modifierSite" class="org.oc.escalade.webapp.action.SiteFormulaireAction" method="doModifierSite">
+      		<result name="input">/jsp/escalade/siteFormulaireModifier.jsp</result> 
+    	   	<interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+		    <result name="error">/jsp/escalade/siteFormulaireModifier.jsp</result>
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSites</param>
+    		</result>	
+    	</action>
+    	<action name="supprimerSite" class="org.oc.escalade.webapp.action.SiteFormulaireAction" method="doSupprimerSite">
+    	   	<interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSites</param>
+    		</result>
+    	</action>	
 
     </package>
 </struts>

@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Escalade-index</title>
+		<title>Mes sites</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<s:head />
 	</head>
@@ -17,14 +17,23 @@
 		
 			<%@include file="../include/navigation.jsp" %>
 	
-			<h1>Liste des sites</h1>
-			
+			<h1>Mes sites</h1>
+
+			<s:a action="formulaireSite">Créer un site</s:a>
+			<s:actionmessage/>		
+				
 			<s:if test="#session.sites">
 				<s:iterator value="#session.sites">			
 					<s:a action="siteDetail">						
 						<h2><s:property value="nom"/></h2>					
 						<s:param name="id" value="id"/>					
 					</s:a>
+					<s:a action="modifierSite">Modifier
+						<s:param name="id" value="id"/>	
+					</s:a>
+					<s:a action="supprimerSite">Supprimer
+						<s:param name="id" value="id"/>	
+					</s:a><br>
 					Localité : <s:property value="codePostal"/> <s:property value="localite"/><br>
 					<img src="images/images_sites/<s:property value="imagePath"/>"/>
 					<p><s:property value="presentation"/></p>			
