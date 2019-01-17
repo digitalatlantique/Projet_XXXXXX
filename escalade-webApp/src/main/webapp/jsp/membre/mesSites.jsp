@@ -24,7 +24,7 @@
 				
 			<s:if test="#session.sites">
 				<s:iterator value="#session.sites">			
-					<s:a action="siteDetail">						
+					<s:a action="mesSecteurs">						
 						<h2><s:property value="nom"/></h2>					
 						<s:param name="id" value="id"/>					
 					</s:a>

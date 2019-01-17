@@ -14,7 +14,7 @@
 	
 		<div class="container">
 						
-			<%@include file="../include/navigation.jsp" %>
+			<%@include file="../../include/navigation.jsp" %>
 
 			<h1>Modifier un site de grimpe</h1>
 			
@@ -36,7 +36,6 @@
 				<s:hidden name="id" value="%{id}"></s:hidden>
 				<button type="submit" class="btn btn-primary">Modifier</button>
 			</form>
-
 		
 		</div>
 

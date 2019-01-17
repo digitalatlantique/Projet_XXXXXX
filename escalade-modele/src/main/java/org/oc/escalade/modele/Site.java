@@ -51,7 +51,7 @@ public class Site implements Serializable {
 	@OneToMany(mappedBy="site", cascade = CascadeType.ALL)
 	private Collection<Commentaire> commentaires = new ArrayList<Commentaire>();
 	
-	@OneToMany(mappedBy="site", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="site", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private Collection<Secteur> secteurs = new HashSet<Secteur>();
 	
 	@ManyToOne

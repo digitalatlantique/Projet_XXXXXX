@@ -56,8 +56,8 @@
 	<bean id="rechercheDAO" class="org.oc.escalade.persistance.rechercheDAO.RechercheDAOImpl" autowire="byName"/>        				
 	
 	<bean id="siteService" class="org.oc.escalade.service.escaladeService.SiteServiceImpl" autowire="byName"/>
+	<bean id="secteurService" class="org.oc.escalade.service.escaladeService.SecteurServiceImpl" autowire="byName"/>
 	<bean id="rechercheService" class="org.oc.escalade.service.rechercheService.RechercheServiceImpl" autowire="byName"/>
 	<bean id="membreService" class="org.oc.escalade.service.escaladeService.MembreServiceImpl" autowire="byName"/>
-
 		
 </beans>

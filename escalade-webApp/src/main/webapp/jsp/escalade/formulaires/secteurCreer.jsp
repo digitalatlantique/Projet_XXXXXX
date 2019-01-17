@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Créer un site</title>
+		<title>Créer un secteur</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	</head>
 	
@@ -14,28 +14,22 @@
 	
 		<div class="container">
 						
-			<%@include file="../include/navigation.jsp" %>
+			<%@include file="../../include/navigation.jsp" %>
 
-			<h1>Création d'un site de grimpe</h1>
+			<h1>Création d'un secteur</h1>
 			
 			<s:actionerror/>
 			
-			<form action="creerSite">
+			<form action="creerSecteur">
 				<div class="form-group">
 					<s:textfield class="form-control" name="nom" placeholder="Nom" />
 				</div>
 				<div class="form-group">
-					<s:textarea class="form-control" name="presentation" placeholder="Présentation" />
+					<s:textfield class="form-control" name="hauteur" placeholder="Hauteur" />
 				</div>
-				<div class="form-group">
-					<s:textfield class="form-control" name="localite" placeholder="Localite" />
-				</div>
-				<div class="form-group">
-					<s:textfield class="form-control" name="codePostal" placeholder="Code postal" />
-				</div>
+				<s:hidden name="id" value="%{id}"></s:hidden>
 				<button type="submit" class="btn btn-primary">Créer</button>
 			</form>
-
 		
 		</div>
 

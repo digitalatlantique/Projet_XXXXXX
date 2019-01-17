@@ -113,14 +113,14 @@
     	
     	<!-- Gestion des sites du membre -->
     	<action name="formulaireSite">
-    		<result name="success">/jsp/escalade/siteFormulaire.jsp</result>
+    		<result name="success">/jsp/escalade/formulaires/siteCreer.jsp</result>
     	</action>  
     	<action name="creerSite" class="org.oc.escalade.webapp.action.SiteFormulaireAction" method="doNouveauSite">
     	   	<interceptor-ref name="store">		
 		        <param name="operationMode">STORE</param>		
 		    </interceptor-ref>		
 		    <interceptor-ref name="defaultStack" />
-		    <result name="error">/jsp/escalade/siteFormulaire.jsp</result>
+		    <result name="error">/jsp/escalade/formulaires/siteCreer.jsp</result>
     		<result name="success" type="redirectAction">
     			<param name="actionName">mesSites</param>
     		</result>
@@ -133,12 +133,12 @@
     		<result>/jsp/membre/mesSites.jsp</result>
     	</action>
     	<action name="modifierSite" class="org.oc.escalade.webapp.action.SiteFormulaireAction" method="doModifierSite">
-      		<result name="input">/jsp/escalade/siteFormulaireModifier.jsp</result> 
+      		<result name="input">/jsp/escalade/formulaires/siteModifier.jsp</result> 
     	   	<interceptor-ref name="store">		
 		        <param name="operationMode">STORE</param>		
 		    </interceptor-ref>		
 		    <interceptor-ref name="defaultStack" />
-		    <result name="error">/jsp/escalade/siteFormulaireModifier.jsp</result>
+		    <result name="error">/jsp/escalade/formulaires/siteModifier.jsp</result>
     		<result name="success" type="redirectAction">
     			<param name="actionName">mesSites</param>
     		</result>	
@@ -152,6 +152,46 @@
     			<param name="actionName">mesSites</param>
     		</result>
     	</action>	
+    	<action name="mesSecteurs" class="org.oc.escalade.webapp.action.SiteAction" method="doMesSecteurs">
+    		<interceptor-ref name="store">
+    			<param name="operationMode">RETRIEVE</param>
+    		</interceptor-ref>
+    		<interceptor-ref name="defaultStack"/>
+    		<result name="success">/jsp/membre/mesSecteurs.jsp</result>
+    	</action>
+    	<action name="creerSecteur" class="org.oc.escalade.webapp.action.SecteurFormulaireAction" method="doCreerSecteur">
+    		<interceptor-ref name="store">
+    			<param name="operationMode">STORE</param>
+    		</interceptor-ref>
+    		<interceptor-ref name="defaultStack"/>
+    		<result name="input">/jsp/escalade/formulaires/secteurCreer.jsp</result>
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSecteurs</param>
+    			<param name="id">${id}</param>
+    		</result>
+    	</action>
+    	<action name="modifierSecteur" class="org.oc.escalade.webapp.action.SecteurFormulaireAction" method="doModifierSecteur">
+    	    <interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+    		<result name="input">/jsp/escalade/formulaires/secteurModifier.jsp</result>
+    		<result name="error">/jsp/escalade/formulaires/secteurModifier.jsp</result>
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSecteurs</param>
+    			<param name="id">${id}</param>
+    		</result>
+    	</action>
+    	<action name="supprimerSecteur" class="org.oc.escalade.webapp.action.SecteurFormulaireAction" method="doSupprimerSecteur">
+    	    <interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSecteurs</param>
+    			<param name="id">${id}</param>
+    		</result>
+    	</action>
 
     </package>
 </struts>

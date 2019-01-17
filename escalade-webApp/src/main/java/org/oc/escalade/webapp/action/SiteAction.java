@@ -36,13 +36,18 @@ public class SiteAction extends ActionSupport implements SessionAware{
 			}
 		}
 		secteurs = site.getSecteurs();
-
 		return SUCCESS;
 	}
 	public String doMesSites() {
 		membre = (Membre) session.get("membre");
 		sites = siteService.lister(membre.getId());
 		session.put("sites", sites);
+		return SUCCESS;
+	}
+	public String doMesSecteurs() {
+		site = (Site) siteService.chercher(id);
+		secteurs = site.getSecteurs();
+		session.put("site", site);
 		return SUCCESS;
 	}
 
