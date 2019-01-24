@@ -27,7 +27,7 @@
 				<div class="form-group">
 					<s:textfield class="form-control" name="hauteur" placeholder="Hauteur" />
 				</div>
-				<s:hidden name="id" value="%{id}"></s:hidden>
+				<s:hidden name="id" value="%{id}"/>
 				<button type="submit" class="btn btn-primary">Créer</button>
 			</form>
 		

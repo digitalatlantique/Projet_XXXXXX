@@ -37,7 +37,7 @@ public class Secteur implements Serializable {
 	@JoinColumn(name="site_id", nullable=false)
 	private Site site;
 	
-	@OneToMany(mappedBy="secteur", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="secteur", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private Collection<Voie> voies = new HashSet<Voie>();
 	
 	

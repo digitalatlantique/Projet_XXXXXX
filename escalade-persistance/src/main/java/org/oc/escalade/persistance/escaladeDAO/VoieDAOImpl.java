@@ -43,7 +43,7 @@ public class VoieDAOImpl extends AbstractEscaladeDAO implements EscaladeDAO<Voie
 		
 	}
 	/**
-	 * Liste les voie d'un secteur
+	 * Liste les voies d'un secteur
 	 */
 	@Override
 	public List<Voie> lister(int identifiant) {

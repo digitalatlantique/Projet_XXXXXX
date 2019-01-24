@@ -14,13 +14,17 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class SiteAction extends ActionSupport implements SessionAware{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Map<String, Object> session;
 	private List<Site> sites;
 	private Site site;
 	private Collection<Secteur> secteurs;
 	private int id;
 	private Membre membre;
-	private SiteService siteService;
+	private SiteService<Site> siteService;
 
 	public String doSite() {
 		
@@ -45,7 +49,15 @@ public class SiteAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	public String doMesSecteurs() {
-		site = (Site) siteService.chercher(id);
+		//site = (Site) siteService.chercher(id);
+		sites = (List<Site>) session.get("sites");
+		
+		for (Site site : sites) {
+			if(site.getId() == id) {
+				this.site = site;
+				break;
+			}
+		}
 		secteurs = site.getSecteurs();
 		session.put("site", site);
 		return SUCCESS;
@@ -67,9 +79,17 @@ public class SiteAction extends ActionSupport implements SessionAware{
 		this.id = id;
 	}
 
-	public void setSiteService(SiteService siteService) {
+	public Collection<Secteur> getSecteurs() {
+		return secteurs;
+	}
+	public void setSecteurs(Collection<Secteur> secteurs) {
+		this.secteurs = secteurs;
+	}
+	public void setSiteService(SiteService<Site> siteService) {
+
 		this.siteService = siteService;
 	}
+	
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;

@@ -37,7 +37,8 @@ public class SecteurFormulaireAction extends ActionSupport implements SessionAwa
 			Site site = (Site) session.get("site");
 			id = site.getId();
 			Secteur secteur = new Secteur(nom, hauteur, site);
-			secteurService.enregistrer(secteur);			
+			secteurService.enregistrer(secteur);
+			this.addActionMessage("Ajout du nouveau secteur !");
 			resultat = SUCCESS;
 		}
 		return resultat;

@@ -51,19 +51,9 @@ public class Membre implements Serializable {
 		this.email = email;
 		this.password = password;
 	}
-	
-	public void ajouterSite(Site site) {
-		site.setMembre(this);
-		sites.add(site);
-	}
-	
+		
 	public Collection<Site> recupererSites(){
 		return sites;
-	}
-	
-	public void ajouterTopo(Topo topo) {
-		topo.setMembre(this);
-		topos.add(topo);
 	}
 	
 	public Collection<Topo> recupererTopo(){

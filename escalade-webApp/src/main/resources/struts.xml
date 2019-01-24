@@ -151,7 +151,8 @@
     		<result name="success" type="redirectAction">
     			<param name="actionName">mesSites</param>
     		</result>
-    	</action>	
+    	</action>
+    	<!-- Gestioon des secteurs -->	
     	<action name="mesSecteurs" class="org.oc.escalade.webapp.action.SiteAction" method="doMesSecteurs">
     		<interceptor-ref name="store">
     			<param name="operationMode">RETRIEVE</param>
@@ -192,6 +193,40 @@
     			<param name="id">${id}</param>
     		</result>
     	</action>
-
+    	<!-- Gestion des voies -->
+		<action name="creerVoie" class="org.oc.escalade.webapp.action.VoieFormulaireAction" method="doCreerVoie">
+		    <interceptor-ref name="store">
+    			<param name="operationMode">STORE</param>
+    		</interceptor-ref>
+    		<interceptor-ref name="defaultStack"/>
+    		<result name="input">/jsp/escalade/formulaires/voieCreer.jsp</result>
+    		<result name="error">/jsp/escalade/formulaires/voieCreer.jsp</result>
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSecteurs</param>
+    			<param name="id">${id}</param>
+    		</result>
+		</action>
+		<action name="modifierVoie" class="org.oc.escalade.webapp.action.VoieFormulaireAction" method="doModifierVoie">
+    	    <interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+		    <result name="input">/jsp/escalade/formulaires/voieModifier.jsp</result>
+		    <result name="error">/jsp/escalade/formulaires/voieModifier.jsp</result>
+		    <result name="success" type="redirectAction">
+   				<param name="actionName">mesSecteurs</param>
+    			<param name="id">${id}</param>		    	
+		    </result>		
+		</action>
+		<action name="supprimerVoie" class="org.oc.escalade.webapp.action.VoieFormulaireAction" method="doSupprimerVoie">
+   	    <interceptor-ref name="store">		
+		    <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSecteurs</param>
+    			<param name="id">${id}</param>
+    		</result>		
+		</action>
     </package>
 </struts>

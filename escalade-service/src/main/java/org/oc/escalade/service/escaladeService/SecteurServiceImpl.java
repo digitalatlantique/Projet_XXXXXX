@@ -8,7 +8,7 @@ import org.oc.escalade.persistance.escaladeDAO.SiteDAO;
 
 public class SecteurServiceImpl implements EscaladeService<Secteur> {
 	
-	private EscaladeDAO secteurDAO;
+	private EscaladeDAO<Secteur> secteurDAO;
 
 	@Override
 	public Secteur enregistrer(Secteur secteur) {
@@ -42,7 +42,7 @@ public class SecteurServiceImpl implements EscaladeService<Secteur> {
 		return secteurDAO.lister(identifiant);
 	}
 
-	public void setSecteurDAO(EscaladeDAO secteurDAO) {
+	public void setSecteurDAO(EscaladeDAO<Secteur> secteurDAO) {
 		this.secteurDAO = secteurDAO;
 	}
 

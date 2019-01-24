@@ -28,11 +28,16 @@ public class Voie implements Serializable {
 	
 	public Voie() {
 	}
-
 	public Voie(String numero, String nom, String cotation) {
 		this.numero = numero;
 		this.nom = nom;
 		this.cotation = cotation;
+	}
+	public Voie(String numero, String nom, String cotation, Secteur secteur) {
+		this.numero = numero;
+		this.nom = nom;
+		this.cotation = cotation;
+		this.secteur = secteur;
 	}
 
 	public int getId() {
