@@ -50,7 +50,8 @@ public class SiteAction extends ActionSupport implements SessionAware{
 	}
 	public String doMesSecteurs() {
 		//site = (Site) siteService.chercher(id);
-		sites = (List<Site>) session.get("sites");
+		membre = (Membre) session.get("membre");
+		sites = siteService.lister(membre.getId());
 		
 		for (Site site : sites) {
 			if(site.getId() == id) {
