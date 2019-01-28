@@ -17,6 +17,7 @@ public class SecteurFormulaireAction extends ActionSupport implements SessionAwa
 	private Site site;
 	private String nom = null;
 	private Integer hauteur = null;
+	private static final String IMAGE_SECTEUR_DEFAUT = "secteurDefaut.jpg"; 
     private EscaladeService secteurService;
     private Map<String, Object> session;
     private int id;
@@ -36,7 +37,7 @@ public class SecteurFormulaireAction extends ActionSupport implements SessionAwa
 			
 			Site site = (Site) session.get("site");
 			id = site.getId();
-			Secteur secteur = new Secteur(nom, hauteur, site);
+			Secteur secteur = new Secteur(nom, hauteur, site, IMAGE_SECTEUR_DEFAUT);
 			secteurService.enregistrer(secteur);
 			this.addActionMessage("Ajout du nouveau secteur !");
 			resultat = SUCCESS;

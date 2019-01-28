@@ -44,10 +44,11 @@ public class Secteur implements Serializable {
 	public Secteur() {
 	}
 
-	public Secteur(String nom, int hauteur, Site site) {
+	public Secteur(String nom, int hauteur, Site site, String imagePath) {
 		this.nom = nom;
 		this.hauteur = hauteur;
 		this.site = site;
+		this.imagePath = imagePath;
 	}
 
 	public int getId() {

@@ -65,12 +65,13 @@ public class Site implements Serializable {
 		
 	}
 
-	public Site(String nom, String presentation, String localite, String codePostal) {
+	public Site(String nom, String presentation, String localite, String codePostal, String imagePath) {
 
 		this.nom = nom;
 		this.presentation = presentation;
 		this.localite = localite;
 		this.codePostal = codePostal;
+		this.imagePath = imagePath;
 	}
 
 	public int getId() {

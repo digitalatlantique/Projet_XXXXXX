@@ -21,6 +21,7 @@ public class SiteFormulaireAction extends ActionSupport implements SessionAware{
 	private String localite = null;
 	private String codePostal = null;
 	private String imagePath;
+	private static final String IMAGE_SITE_DEFAUT = "siteDefaut.jpg";
 	private Membre membre;
 	private Map<String, Object> session;
 	private SiteService siteService;
@@ -35,7 +36,7 @@ public class SiteFormulaireAction extends ActionSupport implements SessionAware{
 		}
 		else {
 			membre = (Membre) session.get("membre");
-			Site site = new Site(nom, presentation, localite, codePostal);
+			Site site = new Site(nom, presentation, localite, codePostal, IMAGE_SITE_DEFAUT);
 			site.setMembre(membre);
 			siteService.enregistrer(site);
 			this.addActionMessage("Ajout du nouveau site !");			
