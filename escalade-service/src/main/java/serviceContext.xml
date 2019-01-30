@@ -60,5 +60,6 @@
 	<bean id="voieService" class="org.oc.escalade.service.escaladeService.VoieServiceImpl" autowire="byName"/>
 	<bean id="rechercheService" class="org.oc.escalade.service.rechercheService.RechercheServiceImpl" autowire="byName"/>
 	<bean id="membreService" class="org.oc.escalade.service.escaladeService.MembreServiceImpl" autowire="byName"/>
+	<bean id="topoService" class="org.oc.escalade.service.topoService.TopoServiceImpl" autowire="byName"/>
 		
 </beans>

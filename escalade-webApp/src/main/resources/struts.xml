@@ -80,6 +80,14 @@
         	<result name="success">/jsp/escalade/siteDetail.jsp</result>
         </action>
         
+        <!-- Topo -->
+        <action name="topo" class="org.oc.escalade.webapp.action.TopoAction" method="doTopo">
+        	<result name="success">/jsp/escalade/topo.jsp</result>
+        </action>
+        <action name="topoDetail" class="org.oc.escalade.webapp.action.SiteAction" method="doSiteTopo">
+        	<result name="success">/jsp/escalade/sites.jsp</result>
+        </action>
+        
         <!-- Authentification -->
         <action name="membre" class="org.oc.escalade.webapp.action.MembreAction" method="doAuthentification">
             <interceptor-ref name="store">

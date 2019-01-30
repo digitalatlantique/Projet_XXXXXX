@@ -23,12 +23,21 @@ public class SiteAction extends ActionSupport implements SessionAware{
 	private Site site;
 	private Collection<Secteur> secteurs;
 	private int id;
+	private int topoId;
 	private Membre membre;
 	private SiteService<Site> siteService;
 
 	public String doSite() {
 		
 		return SUCCESS;
+	}
+	
+	public String doSiteTopo() {
+		
+		sites = siteService.listerSitesTopo(topoId);
+		session.put("sites", sites);
+		return SUCCESS;
+		
 	}
 	public String doDetail() {
 		sites = (List<Site>) session.get("sites");
@@ -78,6 +87,14 @@ public class SiteAction extends ActionSupport implements SessionAware{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public int getTopoId() {
+		return topoId;
+	}
+
+	public void setTopoId(int topoId) {
+		this.topoId = topoId;
 	}
 
 	public Collection<Secteur> getSecteurs() {

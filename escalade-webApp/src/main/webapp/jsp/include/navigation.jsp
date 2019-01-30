@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li class="nav-item">
       	<s:a class="nav-link" action="index">Home</s:a>
       </li>
       <li class="nav-item">
@@ -16,6 +16,10 @@
 	      </li>
 
       </s:if>
+      
+      <li class="nav-item">
+      	<s:a class="nav-link" action="topo">Topos</s:a>
+      </li>
 
       <li class="nav-item">
       	<s:a class="nav-link" action="recherche">Rechercher</s:a>

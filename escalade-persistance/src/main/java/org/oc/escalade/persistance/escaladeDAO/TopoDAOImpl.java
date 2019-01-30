@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public class TopoDAOImpl extends AbstractEscaladeDAO implements EscaladeDAO<Topo> {
+public class TopoDAOImpl extends AbstractEscaladeDAO implements TopoDAO<Topo> {
 
 	@Override
 	public Topo enregistrer(Topo topo) {
@@ -55,5 +55,17 @@ public class TopoDAOImpl extends AbstractEscaladeDAO implements EscaladeDAO<Topo
 		List<Topo> topos = (List<Topo>) session.createQuery(requete).setParameter("mid", identifiant).list();
 		return topos;
 	}
+	/**
+	 * Liste tous les topos
+	 */
+	@Override
+	public List<Topo> listerTout() {
+		
+		Session session = sessionFactory.getCurrentSession();
+		String requete = "SELECT t FROM Topo t ORDER BY t.id DESC";
+		List<Topo> topos = session.createQuery(requete).list();			
+		return topos;
+	}
+
 
 }

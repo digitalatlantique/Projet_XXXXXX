@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.oc.escalade.modele.Secteur;
 import org.oc.escalade.modele.Site;
+import org.oc.escalade.modele.Topo;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,10 +58,12 @@ public class SiteDAOImpl extends AbstractEscaladeDAO implements SiteDAO<Site> {
 		
 		Session session = sessionFactory.getCurrentSession();
 		String requete = "FROM Site s WHERE membre_id = :mid";
-		List<Site> sites = (List<Site>) session.createQuery(requete).setParameter("mid", identifiant).list();
+		List<Site> sites = session.createQuery(requete).setParameter("mid", identifiant).list();
 		return sites;
 	}
-
+	/**
+	 * Retourne le dernier site créer
+	 */
 	@Override
 	public Site chercherDernier() {
 		
@@ -76,5 +79,14 @@ public class SiteDAOImpl extends AbstractEscaladeDAO implements SiteDAO<Site> {
 		}		 
 		return site;
 	}
-
+	/**
+	 * Liste tous les sites d'un topo
+	 */
+	@Override
+	public List<Site> listerSitesTopo(int identifiantTopo) {
+		Session session = sessionFactory.getCurrentSession();
+		String requete = "SELECT s FROM Site s JOIN s.topos t WHERE t.id = :tid";
+		List<Site> sites = session.createQuery(requete).setParameter("tid", identifiantTopo).list();
+		return sites;
+	}
 }

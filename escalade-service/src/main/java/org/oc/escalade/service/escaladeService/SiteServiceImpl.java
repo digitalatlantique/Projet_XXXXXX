@@ -8,13 +8,13 @@ import org.oc.escalade.persistance.escaladeDAO.SiteDAO;
 
 public class SiteServiceImpl implements SiteService<Site> {
 
-	private SiteDAO siteDAO;
+	private SiteDAO<Site> siteDAO;
 	
 	public SiteServiceImpl() {
 
 	}
 	
-	public void setSiteDAO(SiteDAO siteDAO) {
+	public void setSiteDAO(SiteDAO<Site> siteDAO) {
 		this.siteDAO = siteDAO;
 	}
 
@@ -52,6 +52,13 @@ public class SiteServiceImpl implements SiteService<Site> {
 
 		return (Site) siteDAO.chercherDernier();
 	}
-
+	/**
+	 * Liste tous les sites d'un topo
+	 */
+	@Override
+	public List<Site> listerSitesTopo(int identifiantTopo){
+		
+		return siteDAO.listerSitesTopo(identifiantTopo);
+	}
 
 }

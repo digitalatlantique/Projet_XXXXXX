@@ -60,6 +60,7 @@
 	<bean id="voieService" class="org.oc.escalade.service.escaladeService.VoieServiceImpl" autowire="byName"/>
 	<bean id="rechercheService" class="org.oc.escalade.service.rechercheService.RechercheServiceImpl" autowire="byName"/>
 	<bean id="membreService" class="org.oc.escalade.service.escaladeService.MembreServiceImpl" autowire="byName"/>
+	<bean id="topoService" class="org.oc.escalade.service.topoService.TopoServiceImpl" autowire="byName"/>
     
     <bean id="indexEscaladeAction" class="org.oc.escalade.webapp.action.IndexEscaladeAction" autowire="byName"/>
     <bean id="rechercheAction" class="org.oc.escalade.webapp.action.RechercheAction" autowire="byName" />
@@ -69,4 +70,5 @@
  	<bean id="siteAction" class="org.oc.escalade.webapp.action.SiteAction" autowire="byName" />
  	<bean id="secteurFormulaireAction" class="org.oc.escalade.webapp.action.SecteurFormulaireAction" autowire="byName"/>
  	<bean id="voieFormulaireAction" class="org.oc.escalade.webapp.action.VoieFormulaireAction" autowire="byName"/>
+ 	<bean id="topoAction" class="org.oc.escalade.webapp.action.TopoAction" autowire="byName"/>
 </beans>
