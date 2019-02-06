@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Créer un site</title>
+		<title>Créer un topo</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	</head>
 	
@@ -16,22 +16,20 @@
 						
 			<%@include file="../../include/navigation.jsp" %>
 
-			<h1>Création d'un site de grimpe</h1>
+			<h1>Création d'un topo</h1>
 			
 			<s:actionerror/>
 			
-			<form action="creerSite">
+			<form action="creerTopo">
 				<div class="form-group">
-					<s:textfield class="form-control" name="nom" placeholder="Nom" />
+					<s:textfield class="form-control" name="libelle" placeholder="Nom du topo" />
 				</div>
 				<div class="form-group">
-					<s:textarea class="form-control" name="presentation" placeholder="Présentation" />
+					<s:textarea class="form-control" name="information" placeholder="Information" />
 				</div>
+
 				<div class="form-group">
-					<s:textfield class="form-control" name="localite" placeholder="Localite" />
-				</div>
-				<div class="form-group">
-					<s:textfield class="form-control" name="codePostal" placeholder="Code postal" />
+					<s:checkbox name="autoriserLocation" value="true" fieldValue="true" label="Autoriser la location."/>
 				</div>
 				<button type="submit" class="btn btn-primary">Créer</button>
 			</form>	

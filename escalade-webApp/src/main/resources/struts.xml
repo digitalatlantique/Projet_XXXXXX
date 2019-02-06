@@ -17,6 +17,8 @@
     			<interceptor-ref name="defaultStack"/>
     		</interceptor-stack>
     	</interceptors>
+    	
+
 	    <!-- Results globaux -->
         <global-results>
             <result name="authentificationForm">/jsp/membre/authentification.jsp</result>
@@ -82,7 +84,7 @@
         
         <!-- Topo -->
         <action name="topo" class="org.oc.escalade.webapp.action.TopoAction" method="doTopo">
-        	<result name="success">/jsp/escalade/topo.jsp</result>
+        	<result name="success">/jsp/escalade/topos.jsp</result>
         </action>
         <action name="topoDetail" class="org.oc.escalade.webapp.action.SiteAction" method="doSiteTopo">
         	<result name="success">/jsp/escalade/sites.jsp</result>
@@ -160,7 +162,7 @@
     			<param name="actionName">mesSites</param>
     		</result>
     	</action>
-    	<!-- Gestioon des secteurs -->	
+    	<!-- Gestion des secteurs -->	
     	<action name="mesSecteurs" class="org.oc.escalade.webapp.action.SiteAction" method="doMesSecteurs">
     		<interceptor-ref name="store">
     			<param name="operationMode">RETRIEVE</param>
@@ -227,8 +229,8 @@
 		    </result>		
 		</action>
 		<action name="supprimerVoie" class="org.oc.escalade.webapp.action.VoieFormulaireAction" method="doSupprimerVoie">
-   	    <interceptor-ref name="store">		
-		    <param name="operationMode">STORE</param>		
+   	    	<interceptor-ref name="store">		
+		    	<param name="operationMode">STORE</param>		
 		    </interceptor-ref>		
 		    <interceptor-ref name="defaultStack" />
     		<result name="success" type="redirectAction">
@@ -236,5 +238,60 @@
     			<param name="id">${id}</param>
     		</result>		
 		</action>
+		
+		<!-- Gestion des topos -->
+		<action name="mesTopos" class="org.oc.escalade.webapp.action.TopoAction" method="doMesTopos">
+    		<interceptor-ref name="store">
+    			<param name="operationMode">RETRIEVE</param>
+    		</interceptor-ref>
+    		<interceptor-ref name="defaultStack"/>
+			<result name="success">/jsp/membre/mesTopos.jsp</result>
+		</action>
+		<action name="creerTopo" class="org.oc.escalade.webapp.action.TopoFormulaireAction" method="doCreerTopo">
+			<interceptor-ref name="store">		
+		    	<param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+			<result name="input">/jsp/escalade/formulaires/topoCreer.jsp</result>
+			<result name="error">/jsp/escalade/formulaires/topoCreer.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">mesTopos</param>
+			</result>
+		</action>
+		<action name="modifierTopo" class="org.oc.escalade.webapp.action.TopoFormulaireAction" method="doModifierTopo">
+			<interceptor-ref name="store">		
+		    	<param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+			<result name="input">/jsp/escalade/formulaires/topoModifier.jsp</result>
+			<result name="error">/jsp/escalade/formulaires/topoModifier.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">mesTopos</param>
+			</result>
+		</action>
+		<action name="supprimerTopo" class="org.oc.escalade.webapp.action.TopoFormulaireAction" method="doSupprimerTopo">
+			<interceptor-ref name="store">		
+		    	<param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+			<result name="success" type="redirectAction">
+				<param name="actionName">mesTopos</param>
+			</result>
+		</action>
+        <action name="monTopoDetail" class="org.oc.escalade.webapp.action.SiteAction" method="doMesSiteTopo">
+        	<result name="success">/jsp/membre/monTopoDetail.jsp</result>
+        </action>
+        <action name="ajouterSiteAuTopo" class="org.oc.escalade.webapp.action.TopoFormulaireAction" method="doAjouterSiteAuTopo">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">monTopoDetail</param>
+        		<param name="topoId">${topoId}</param>
+        	</result>
+        </action>
+        <action name="retirerSiteAuTopo" class="org.oc.escalade.webapp.action.TopoFormulaireAction" method="doRetirerSiteAuTopo">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">monTopoDetail</param>
+        		<param name="topoId">${topoId}</param>
+        	</result>        
+        </action>
     </package>
 </struts>

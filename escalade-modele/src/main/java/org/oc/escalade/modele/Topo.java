@@ -40,10 +40,11 @@ public class Topo implements Serializable {
 	public Topo() {
 	}	
 
-	public Topo(String libelle, String information, boolean autoriserLocation) {
+	public Topo(String libelle, String information, boolean autoriserLocation, Membre membre) {
 		this.libelle = libelle;
 		this.information = information;
 		this.autoriserLocation = autoriserLocation;
+		this.membre = membre;
 	}
 
 	public int getId() {

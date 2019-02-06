@@ -11,32 +11,33 @@ public class TopoServiceImpl implements TopoService<Topo> {
 
 	@Override
 	public Topo enregistrer(Topo topo) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return topoDAO.enregistrer(topo);
 	}
 
 	@Override
 	public Topo chercher(int identifiant) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return topoDAO.chercher(identifiant);
 	}
 
 	@Override
 	public void modifier(Topo topo) {
-		// TODO Auto-generated method stub
 		
+		topoDAO.modifier(topo);
 	}
 
 	@Override
 	public void supprimer(int identifiant) {
-		// TODO Auto-generated method stub
+		
+		topoDAO.supprimer(identifiant);
 		
 	}
 
 	@Override
 	public List<Topo> lister(int identifiant) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return topoDAO.lister(identifiant);
 	}
 
 	@Override
@@ -47,6 +48,20 @@ public class TopoServiceImpl implements TopoService<Topo> {
 
 	public void setTopoDAO(TopoDAO<Topo> topoDAO) {
 		this.topoDAO = topoDAO;
+	}
+
+	@Override
+	public void ajouterSiteAuTopo(int topoId, int siteId) {
+		
+		topoDAO.ajouterSiteAuTopo(topoId, siteId);
+		
+	}
+
+	@Override
+	public void retirerSiteAuTopo(int topoId, int siteId) {
+		
+		topoDAO.retirerSiteAuTopo(topoId, siteId);
+				
 	}
 
 }

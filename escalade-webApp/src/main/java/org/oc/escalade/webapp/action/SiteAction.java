@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
+import org.jboss.logging.Logger;
 import org.oc.escalade.modele.Membre;
 import org.oc.escalade.modele.Secteur;
 import org.oc.escalade.modele.Site;
@@ -12,11 +13,13 @@ import org.oc.escalade.service.escaladeService.SiteService;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+
 public class SiteAction extends ActionSupport implements SessionAware{
 	
 	/**
 	 * 
 	 */
+	private static Logger log = Logger.getLogger(SiteAction.class);
 	private static final long serialVersionUID = 1L;
 	private Map<String, Object> session;
 	private List<Site> sites;
@@ -36,6 +39,16 @@ public class SiteAction extends ActionSupport implements SessionAware{
 		
 		sites = siteService.listerSitesTopo(topoId);
 		session.put("sites", sites);
+		return SUCCESS;
+		
+	}
+	public String doMesSiteTopo() {
+		
+		Membre membre = (Membre) session.get("membre");
+		List<Site> mesSites = siteService.lister(membre.getId());
+		List<Site> sitesTopo = siteService.listerSitesTopo(topoId);
+		session.put("sites", mesSites);
+		session.put("sitesTopo", sitesTopo);
 		return SUCCESS;
 		
 	}

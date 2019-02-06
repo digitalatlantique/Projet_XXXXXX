@@ -3,6 +3,7 @@ package org.oc.escalade.persistance.escaladeDAO;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.oc.escalade.modele.Site;
 import org.oc.escalade.modele.Topo;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -65,6 +66,35 @@ public class TopoDAOImpl extends AbstractEscaladeDAO implements TopoDAO<Topo> {
 		String requete = "SELECT t FROM Topo t ORDER BY t.id DESC";
 		List<Topo> topos = session.createQuery(requete).list();			
 		return topos;
+	}
+
+	@Override
+	public void ajouterSiteAuTopo(int topoId, int siteId) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		Site site = session.get(Site.class, siteId);
+		Topo topo = session.get(Topo.class, topoId);
+		
+		if(!topo.getSites().contains(site)) {
+			
+			topo.getSites().add(site);
+			site.getTopos().add(topo);
+			
+			session.update(topo);
+			session.update(site);
+		}		
+	}
+
+	@Override
+	public void retirerSiteAuTopo(int topoId, int siteId) {
+
+		Session session = sessionFactory.getCurrentSession();
+		Site site = session.get(Site.class, siteId);
+		Topo topo = session.get(Topo.class, topoId);
+		
+		topo.getSites().remove(site);
+		session.update(topo);
+		
 	}
 
 

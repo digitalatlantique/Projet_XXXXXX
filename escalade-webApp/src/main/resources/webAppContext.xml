@@ -71,4 +71,5 @@
  	<bean id="secteurFormulaireAction" class="org.oc.escalade.webapp.action.SecteurFormulaireAction" autowire="byName"/>
  	<bean id="voieFormulaireAction" class="org.oc.escalade.webapp.action.VoieFormulaireAction" autowire="byName"/>
  	<bean id="topoAction" class="org.oc.escalade.webapp.action.TopoAction" autowire="byName"/>
+ 	<bean id="topoActionFormulaire" class="org.oc.escalade.webapp.action.TopoFormulaireAction" autowire="byName"/>
 </beans>
