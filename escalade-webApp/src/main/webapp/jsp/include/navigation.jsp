@@ -14,6 +14,9 @@
 	      <li>
 	      	<s:a class="nav-link" action="mesTopos">Mes topos</s:a>
 	      </li>
+	      <li>
+	      	<s:a class="nav-link" action="mesReservations">Mes réservations</s:a>
+	      </li>
 	      <li class="nav-item">
 	        <s:a class="nav-link" action="deconnexion">Déconnexion</s:a>
 	      </li>

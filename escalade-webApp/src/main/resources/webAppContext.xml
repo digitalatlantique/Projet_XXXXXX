@@ -53,7 +53,8 @@
 	<bean id="siteDAO" class="org.oc.escalade.persistance.escaladeDAO.SiteDAOImpl" autowire="byName"/>
 	<bean id="commentaireDAO" class="org.oc.escalade.persistance.escaladeDAO.CommentaireDAOImpl" autowire="byName"/>
 	<bean id="topoDAO" class="org.oc.escalade.persistance.escaladeDAO.TopoDAOImpl" autowire="byName"/>
-	<bean id="rechercheDAO" class="org.oc.escalade.persistance.rechercheDAO.RechercheDAOImpl" autowire="byName"/>        				
+	<bean id="rechercheDAO" class="org.oc.escalade.persistance.rechercheDAO.RechercheDAOImpl" autowire="byName"/>
+	<bean id="locationDAO" class="org.oc.escalade.persistance.locationDAO.LocationDAOImpl" autowire="byName"/>        				
 	
 	<bean id="siteService" class="org.oc.escalade.service.escaladeService.SiteServiceImpl" autowire="byName"/>
 	<bean id="secteurService" class="org.oc.escalade.service.escaladeService.SecteurServiceImpl" autowire="byName"/>
@@ -61,6 +62,7 @@
 	<bean id="rechercheService" class="org.oc.escalade.service.rechercheService.RechercheServiceImpl" autowire="byName"/>
 	<bean id="membreService" class="org.oc.escalade.service.escaladeService.MembreServiceImpl" autowire="byName"/>
 	<bean id="topoService" class="org.oc.escalade.service.topoService.TopoServiceImpl" autowire="byName"/>
+	<bean id="locationService" class="org.oc.escalade.service.locationService.LocationServiceImpl" autowire="byName"/>
     
     <bean id="indexEscaladeAction" class="org.oc.escalade.webapp.action.IndexEscaladeAction" autowire="byName"/>
     <bean id="rechercheAction" class="org.oc.escalade.webapp.action.RechercheAction" autowire="byName" />
@@ -72,4 +74,5 @@
  	<bean id="voieFormulaireAction" class="org.oc.escalade.webapp.action.VoieFormulaireAction" autowire="byName"/>
  	<bean id="topoAction" class="org.oc.escalade.webapp.action.TopoAction" autowire="byName"/>
  	<bean id="topoActionFormulaire" class="org.oc.escalade.webapp.action.TopoFormulaireAction" autowire="byName"/>
+ 	<bean id="reserverAction" class="org.oc.escalade.webapp.action.ReserverAction" autowire="byName"/>
 </beans>

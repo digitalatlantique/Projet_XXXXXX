@@ -99,6 +99,19 @@
     		<result name="input">/jsp/membre/authentification.jsp</result>
     		<result name="success">/jsp/membre/membre.jsp</result>
     	</action>
+    	<action name="reserverAuthentification" class="org.oc.escalade.webapp.action.ReserverAction" method="doVerifierAuthentification">
+    		<interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+    		<result name="login" type="redirectAction">
+    			<param name="actionName">membre</param>
+    		</result>
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">reserverTopo</param>
+    			<param name="topoId">${topoId}</param>
+    		</result>
+    	</action>
     	
     	<!-- Inscription -->
     	<action name="inscription" class="org.oc.escalade.webapp.action.InscriptionAction" method="doInscription">
@@ -292,6 +305,22 @@
         		<param name="actionName">monTopoDetail</param>
         		<param name="topoId">${topoId}</param>
         	</result>        
+        </action>
+        <!-- Réservation des topos -->
+        <action name="reserverTopo" class="org.oc.escalade.webapp.action.ReserverAction" method="doReserverTopo">
+        	<result name="input">/jsp/escalade/formulaires/reserverCreer.jsp</result>
+        	<result name="error">/jsp/escalade/formulaires/reserverCreer.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">mesReservations</param>
+			</result>
+        </action>
+        <action name="mesReservations" class="org.oc.escalade.webapp.action.ReserverAction" method="doMesReservations">
+        	<result name="success">/jsp/membre/mesResevations.jsp</result>
+        </action>
+        <action name="supprimerReservation" class="org.oc.escalade.webapp.action.ReserverAction" method="doSupprimerReservation">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">mesReservations</param>
+        	</result>
         </action>
     </package>
 </struts>

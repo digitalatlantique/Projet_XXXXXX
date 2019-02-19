@@ -2,7 +2,11 @@ package org.oc.escalade.modele;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -13,7 +17,7 @@ public class LocationId implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	@ManyToOne
 	@JoinColumn(name="topo_id")
 	private Topo topo;
@@ -21,6 +25,8 @@ public class LocationId implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="membre_id")
 	private Membre membre;
+	
+	public LocationId() {};
 
 	public Topo getTopo() {
 		return topo;
@@ -37,7 +43,7 @@ public class LocationId implements Serializable{
 	public void setMembre(Membre membre) {
 		this.membre = membre;
 	}
-	
+
 	public boolean equals(Object o) {
 		
         if (this == o) return true;

@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Topos</title>
+		<title>Mes reservations</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<s:head />
 	</head>
@@ -17,19 +17,15 @@
 		
 			<%@include file="../include/navigation.jsp" %>
 	
-			<h1>Liste des topos</h1>
-			
-			<s:if test="topos">
-				<s:iterator value="topos">			
-					<s:a action="topoDetail">						
-						<h2><s:property value="libelle"/></h2>					
-						<s:param name="topoId" value="id"/>					
-					</s:a>
-					<h3>Information du topo</h3>
-					<s:property value="information"/><br>
-					<s:a action="reserverAuthentification">Réserver
-						<s:param name="topoId" value="id"/>
-					</s:a> 			
+			<h1>Mes réservations</h1>
+				
+			<s:if test="#session.mesLocations">
+				<s:iterator value="#session.mesLocations">
+					<h2>Topo : <s:property value="topo.libelle"/></h2>			
+					Date de location : <s:property value="date.getTime()"/><br>
+					<s:a action="supprimerReservation">Supprimer
+						<s:param name="topoId" value="topo.id"></s:param>
+					</s:a>		
 				</s:iterator>
 			</s:if>
 			<s:else>

@@ -37,7 +37,7 @@ public class Membre implements Serializable {
 	@OneToMany(mappedBy="membre")
 	private Collection<Topo> topos = new HashSet<Topo>();
 	
-	@OneToMany(mappedBy="location_id.membre", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="location_id.membre", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<Location> locations = new ArrayList<Location>();
 	
 	public Membre() {

@@ -1,6 +1,7 @@
 package org.oc.escalade.modele;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -9,16 +10,17 @@ import javax.persistence.*;
 @Table(name="location")
 public class Location implements Serializable{
 	
-	@Id
-	LocationId location_id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@EmbeddedId
+	LocationId location_id = new LocationId();
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name="debut_location")
-	private Date debutLocation;
-	
-	@Temporal(TemporalType.DATE)
-	@Column(name="fin_location")
-	private Date finLocation;
+	@Column(name="date_location")
+	private Calendar date;
 	
 	public Location() {
 	}
@@ -31,19 +33,28 @@ public class Location implements Serializable{
 		this.location_id = location_id;
 	}
 
-	public Date getDebutLocation() {
-		return debutLocation;
+	public Calendar getDate() {
+		return date;
 	}
 
-	public void setDebutLocation(Date debutLocation) {
-		this.debutLocation = debutLocation;
+	public void setDate(Calendar date) {
+		this.date = date;
 	}
 
-	public Date getFinLocation() {
-		return finLocation;
+	@Transient
+	public Topo getTopo() {
+		
+		return location_id.getTopo();
 	}
-
-	public void setFinLocation(Date finLocation) {
-		this.finLocation = finLocation;
+	public void setTopo(Topo topo) {
+		location_id.setTopo(topo);
+	}
+	
+	@Transient
+	public Membre getMembre() {
+		return location_id.getMembre();
+	}
+	public void setMembre(Membre membre) {
+		location_id.setMembre(membre);
 	}
 }

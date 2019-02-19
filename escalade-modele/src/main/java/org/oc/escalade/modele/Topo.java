@@ -33,7 +33,7 @@ public class Topo implements Serializable {
 	@JoinColumn(name="site_id")
 	private Collection<Site> sites = new ArrayList<Site>();
 	
-	@OneToMany(mappedBy="location_id.topo", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="location_id.topo", fetch=FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
 	private Collection<Location> locations = new ArrayList<Location>();
 
 

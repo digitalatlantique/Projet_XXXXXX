@@ -20,7 +20,7 @@
 			
 			<s:actionerror/>
 			
-			<form action="modifierTopo">
+			<s:form action="modifierTopo">
 			
 				<div class="form-group">
 					<s:textfield class="form-control" name="libelle" value="%{#attr['libelle']}" placeholder="Nom du topo" />
@@ -36,7 +36,7 @@
 				
 				<s:hidden name="topoId" value="%{topoId}"></s:hidden>
 				<button type="submit" class="btn btn-primary">Modifier</button>
-			</form>	
+			</s:form>	
 				
 		</div>
 	</body>
