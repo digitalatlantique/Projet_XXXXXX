@@ -46,9 +46,9 @@ public class LocationServiceImpl implements LocationService<Location> {
 	}
 
 	@Override
-	public List<Location> listerLocationsSite(int siteId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Location> listerLocationsTopo(int topoId) {
+		
+		return locationDAO.listerLocationsTopo(topoId);
 	}
 
 	@Override

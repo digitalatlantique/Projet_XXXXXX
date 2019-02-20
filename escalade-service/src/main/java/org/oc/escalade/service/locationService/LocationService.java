@@ -11,7 +11,7 @@ public interface LocationService<T> {
 	T recuperer(int id);
 	void modifier(T objet);
 	void supprimer(int membreId, int topoId);
-	List<T> listerLocationsSite(int siteId);
+	List<T> listerLocationsTopo(int topoId);
 	List<T> listerLocationsMembre(int membreId);
 	void locationDisponible(T objet) throws LocationException;
 }

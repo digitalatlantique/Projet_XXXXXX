@@ -47,7 +47,12 @@ public class ReserverAction extends ActionSupport implements SessionAware{
 	public String doReserverTopo() {
 		
 		String resultat = INPUT;
-		log.debug("================================================= du " + dateFormulaire + " id " + topoId);
+		
+		List<Location> locations = locationService.listerLocationsTopo(topoId);
+		Topo topo = topoService.chercher(topoId);
+		
+		session.put("locations", locations);
+		session.put("topo", topo);
 		
 		if(dateFormulaire == null ) {
 			return resultat;
@@ -60,8 +65,7 @@ public class ReserverAction extends ActionSupport implements SessionAware{
 			
 			Calendar date = creerDate(dateFormulaire);
 			
-			Membre membre = (Membre) session.get("membre");
-			Topo topo = topoService.chercher(topoId);
+			Membre membre = (Membre) session.get("membre");		
 
 			Location location = new Location();
 			location.setMembre(membre);

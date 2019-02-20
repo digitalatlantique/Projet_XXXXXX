@@ -43,7 +43,6 @@ public class LocationDAOImpl implements LocationDAO<Location> {
 	public void modifier(Location location) {
 		
 		Session session = sessionFactory.getCurrentSession();
-
 		session.update(location);
 		
 	}
@@ -71,9 +70,11 @@ public class LocationDAOImpl implements LocationDAO<Location> {
 	}
 
 	@Override
-	public List<Location> listerLocationsSite(int siteId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Location> listerLocationsTopo(int topoId) {
+		Session session = sessionFactory.getCurrentSession();
+		String requete = "SELECT t.locations FROM Topo t "
+							+ "WHERE t.id = :tid";
+		return session.createQuery(requete).setParameter("tid", topoId).list();
 	}
 
 	@Override
@@ -81,7 +82,7 @@ public class LocationDAOImpl implements LocationDAO<Location> {
 
 		Session session = sessionFactory.getCurrentSession();
 		String requete = "SELECT m.locations FROM Membre m "										
-										+ "WHERE m.id = :mid";	
+							+ "WHERE m.id = :mid";	
 		
 		List<Location> locations = session.createQuery(requete).setParameter("mid", membreId).list();
 		return locations;

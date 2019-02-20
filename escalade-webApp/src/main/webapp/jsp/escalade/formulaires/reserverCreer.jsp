@@ -17,7 +17,7 @@
 						
 			<%@include file="../../include/navigation.jsp" %>
 
-			<h1>Réserver</h1>
+			<h1>Réserver <s:property value="#session.topo.libelle"/></h1>
 			
 			<s:actionerror/>
 			
@@ -27,7 +27,22 @@
 				</div>
 				<s:hidden name="topoId" value="%{topoId}"></s:hidden>
 				<s:submit value="Louer" class="btn btn-primary" />
-			</s:form>	
+			</s:form>
+			
+			<s:if test="#session.locations">
+			
+				<ul>
+					<s:iterator value="#session.locations">
+						<li>Réservé le : <s:property value="date.getTime()"/> par <s:property value="membre.prenom"/> <s:property value="membre.nom"/></li>
+					</s:iterator>				
+				</ul>
+
+			
+			</s:if>
+			<s:else>
+				Aucune réservation !
+			</s:else>
+	
 				
 		</div>
 	</body>
