@@ -19,8 +19,11 @@
 			<h1>Bienvenue sur le site communautaire de l'escalade</h1>
 			
 			<h2>Dernier site ajouté : </h2>
+			<s:a action="siteDetail">
+				<h3><s:property value="dernierSite.nom"/></h3>
+				<s:param name="id" value="dernierSite.id"/>
+			</s:a>
 			
-			<h3><s:property value="dernierSite.nom"/></h3>
 			<img src="images/images_sites/<s:property value="dernierSite.imagePath"/>"/>
 			<p>				 
 				<s:property value="dernierSite.presentation"/>

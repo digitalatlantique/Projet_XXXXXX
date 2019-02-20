@@ -89,4 +89,11 @@ public class SiteDAOImpl extends AbstractEscaladeDAO implements SiteDAO<Site> {
 		List<Site> sites = session.createQuery(requete).setParameter("tid", identifiantTopo).list();
 		return sites;
 	}
+
+	@Override
+	public List<Site> listerTout() {
+		Session session = sessionFactory.getCurrentSession();
+		String requete = "FROM Site";
+		return session.createQuery(requete).list();
+	}
 }

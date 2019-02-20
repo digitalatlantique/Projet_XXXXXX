@@ -5,5 +5,6 @@ import java.util.List;
 public interface SiteService<T> extends EscaladeService<T> {
 
 	T chercherDernier();
+	List<T> listerTout();
 	List<T> listerSitesTopo(int identifiantTopo);
 }

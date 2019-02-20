@@ -61,4 +61,10 @@ public class SiteServiceImpl implements SiteService<Site> {
 		return siteDAO.listerSitesTopo(identifiantTopo);
 	}
 
+	@Override
+	public List<Site> listerTout() {
+		
+		return siteDAO.listerTout();
+	}
+
 }
