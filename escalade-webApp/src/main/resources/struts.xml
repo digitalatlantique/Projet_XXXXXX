@@ -33,7 +33,7 @@
         <default-action-ref name="index" />
 
         <!-- Action index -->
-        <action name="index" class="org.oc.escalade.webapp.action.IndexEscaladeAction" method="doSite">        
+        <action name="index" class="org.oc.escalade.webapp.action.SiteAction" method="doSiteIndex">        
             <result name="success">/jsp/index.jsp</result>
         </action>
         
@@ -78,8 +78,24 @@
    			<interceptor-ref name="defaultStack" />
         	<result name="success">/jsp/escalade/sites.jsp</result>
         </action>
+
         <action name="siteDetail" class="org.oc.escalade.webapp.action.SiteAction" method="doDetail">
+           <interceptor-ref name="store">
+		        <param name="operationMode">RETRIEVE</param>			
+		    </interceptor-ref>
+   			<interceptor-ref name="defaultStack" />        
         	<result name="success">/jsp/escalade/siteDetail.jsp</result>
+        </action>
+        <action name="ajouterCommentaire" class="org.oc.escalade.webapp.action.SiteAction" method="doAjouterCommentaire">
+            <interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+		    <result name="error">/jsp/escalade/siteDetail.jsp</result>
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">siteDetail</param>
+        		<param name="id">${id}</param>
+        	</result>
         </action>
         
         <!-- Topo -->

@@ -54,7 +54,7 @@
 	<bean id="commentaireDAO" class="org.oc.escalade.persistance.escaladeDAO.CommentaireDAOImpl" autowire="byName"/>
 	<bean id="topoDAO" class="org.oc.escalade.persistance.escaladeDAO.TopoDAOImpl" autowire="byName"/>
 	<bean id="rechercheDAO" class="org.oc.escalade.persistance.rechercheDAO.RechercheDAOImpl" autowire="byName"/>
-	<bean id="locationDAO" class="org.oc.escalade.persistance.locationDAO.LocationDAOImpl" autowire="byName"/>        				
+	<bean id="locationDAO" class="org.oc.escalade.persistance.locationDAO.LocationDAOImpl" autowire="byName"/>     				
 	
 	<bean id="siteService" class="org.oc.escalade.service.escaladeService.SiteServiceImpl" autowire="byName"/>
 	<bean id="secteurService" class="org.oc.escalade.service.escaladeService.SecteurServiceImpl" autowire="byName"/>
@@ -63,8 +63,8 @@
 	<bean id="membreService" class="org.oc.escalade.service.escaladeService.MembreServiceImpl" autowire="byName"/>
 	<bean id="topoService" class="org.oc.escalade.service.topoService.TopoServiceImpl" autowire="byName"/>
 	<bean id="locationService" class="org.oc.escalade.service.locationService.LocationServiceImpl" autowire="byName"/>
-    
-    <bean id="indexEscaladeAction" class="org.oc.escalade.webapp.action.IndexEscaladeAction" autowire="byName"/>
+	<bean id="commentaireService" class="org.oc.escalade.service.escaladeService.CommentaireServiceImpl" autowire="byName"/>
+
     <bean id="rechercheAction" class="org.oc.escalade.webapp.action.RechercheAction" autowire="byName" />
     <bean id="rechercheMulticritereAction" class="org.oc.escalade.webapp.action.RechercheMulticritereAction" autowire="byName" />
  	<bean id="inscriptionAction" class="org.oc.escalade.webapp.action.InscriptionAction" autowire="byName" />

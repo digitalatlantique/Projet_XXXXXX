@@ -6,9 +6,11 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 import org.jboss.logging.Logger;
+import org.oc.escalade.modele.Commentaire;
 import org.oc.escalade.modele.Membre;
 import org.oc.escalade.modele.Secteur;
 import org.oc.escalade.modele.Site;
+import org.oc.escalade.service.escaladeService.EscaladeService;
 import org.oc.escalade.service.escaladeService.SiteService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -24,14 +26,25 @@ public class SiteAction extends ActionSupport implements SessionAware{
 	private Map<String, Object> session;
 	private List<Site> sites;
 	private Site site;
+	private Site dernierSite;
+	private String commentaire;
 	private Collection<Secteur> secteurs;
+	private Collection<Commentaire> commentaires;
 	private int id;
 	private int topoId;
 	private Membre membre;
 	private SiteService<Site> siteService;
+	private EscaladeService<Commentaire> commentaireService;
 
+	public String doSiteIndex() {
+		log.debug("Action index");
+		dernierSite = (Site) siteService.chercherDernier();
+		List<Site> sites = siteService.listerTout();
+		session.put("sites", sites);
+		return ActionSupport.SUCCESS;
+	}
+	
 	public String doSite() {
-		
 		return SUCCESS;
 	}
 	
@@ -62,8 +75,33 @@ public class SiteAction extends ActionSupport implements SessionAware{
 			}
 		}
 		secteurs = site.getSecteurs();
+		commentaires = commentaireService.lister(id);
 		return SUCCESS;
 	}
+	
+	public String doAjouterCommentaire(){
+		
+		String resultat = ERROR;
+		Membre membre = (Membre) session.get("membre");
+		
+		if(membre == null) {
+			this.addActionError("Veuillez vous identifier pour écrire un commentaire !");
+			
+		}
+		else if(commentaire == null || commentaire.isEmpty()) {
+			doDetail();
+			this.addActionError("Veuillez saisir un commentaire !");
+			
+		}
+		else {
+			Site site = siteService.chercher(id);
+			Commentaire commentaireAjout = new Commentaire(commentaire, membre, site);
+			commentaireService.enregistrer(commentaireAjout);
+			resultat = SUCCESS;
+		}
+		return resultat;
+	}
+	
 	public String doMesSites() {
 		membre = (Membre) session.get("membre");
 		sites = siteService.lister(membre.getId());
@@ -94,6 +132,30 @@ public class SiteAction extends ActionSupport implements SessionAware{
 		this.site = site;
 	}
 
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
+
+	public Collection<Commentaire> getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(Collection<Commentaire> commentaires) {
+		this.commentaires = commentaires;
+	}
+
+	public Site getDernierSite() {
+		return dernierSite;
+	}
+
+	public void setDernierSite(Site dernierSite) {
+		this.dernierSite = dernierSite;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -121,6 +183,10 @@ public class SiteAction extends ActionSupport implements SessionAware{
 		this.siteService = siteService;
 	}
 	
+	public void setCommentaireService(EscaladeService<Commentaire> commentaireService) {
+		this.commentaireService = commentaireService;
+	}
+
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;

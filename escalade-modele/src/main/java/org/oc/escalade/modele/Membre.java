@@ -11,6 +11,11 @@ import javax.persistence.*;
 @Table(name="membre", uniqueConstraints=@UniqueConstraint(columnNames= {"nom", "prenom"}))
 public class Membre implements Serializable {	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="membre_id")
@@ -36,6 +41,9 @@ public class Membre implements Serializable {
 	
 	@OneToMany(mappedBy="membre")
 	private Collection<Topo> topos = new HashSet<Topo>();
+	
+	@OneToMany(mappedBy="membre", cascade = CascadeType.ALL)
+	private Collection<Commentaire> commentaires = new ArrayList<Commentaire>();
 	
 	@OneToMany(mappedBy="location_id.membre", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<Location> locations = new ArrayList<Location>();

@@ -33,6 +33,21 @@
 					</ul>
 					</s:iterator>
 				
+			</s:iterator>	
+			
+			<s:actionerror/>		
+			<s:form action="ajouterCommentaire">
+			
+				<s:textarea label="Commentaire" name="commentaire"/>
+				<s:hidden name="id" value="%{id}"/>
+				<s:submit class="btn btn-primary" value="Envoyer"/>
+			
+			</s:form>
+			
+			<s:iterator value="commentaires">
+				<h3>Commentaire</h3>				
+				<p><s:property value="commentaire"/></p>
+				<h4> De : <s:property value="membre.prenom"/> <s:property value="membre.nom"/></h4>
 			</s:iterator>
 		</div>
 	

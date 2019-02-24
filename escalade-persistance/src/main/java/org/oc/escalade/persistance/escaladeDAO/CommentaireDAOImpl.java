@@ -43,7 +43,9 @@ public class CommentaireDAOImpl extends AbstractEscaladeDAO implements EscaladeD
 		session.delete(commentaire);
 		
 	}
-
+	/*
+	 * Lste les commantaires du site
+	 */
 	@Override
 	public List<Commentaire> lister(int identifiant) {
 		

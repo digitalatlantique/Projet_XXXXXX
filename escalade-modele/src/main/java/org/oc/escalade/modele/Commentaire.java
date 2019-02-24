@@ -8,6 +8,11 @@ import javax.persistence.*;
 @Table(name="commentaire")
 public class Commentaire implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="commentaire_id")
@@ -25,6 +30,12 @@ public class Commentaire implements Serializable {
 	private Membre membre;
 	
 	public Commentaire() {
+	}
+	
+	public Commentaire(String commentaire, Membre membre, Site site) {
+		this.commentaire = commentaire;
+		this.membre = membre;
+		this.site = site;
 	}
 
 	public Commentaire(String commentaire) {

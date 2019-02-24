@@ -7,6 +7,15 @@
       <li class="nav-item">
         <s:a class="nav-link" action="membre">Membre</s:a>
       </li>
+  
+      <li class="nav-item">
+      	<s:a class="nav-link" action="topo">Topos</s:a>
+      </li>
+
+      <li class="nav-item">
+      	<s:a class="nav-link" action="recherche">Rechercher</s:a>
+      </li>
+      <!-- Session membre -->
       <s:if test="#session.membre">
 	      <li class="nav-item">
 	        <s:a class="nav-link" action="mesSites">Mes sites</s:a>
@@ -23,13 +32,7 @@
 
       </s:if>
       
-      <li class="nav-item">
-      	<s:a class="nav-link" action="topo">Topos</s:a>
-      </li>
 
-      <li class="nav-item">
-      	<s:a class="nav-link" action="recherche">Rechercher</s:a>
-      </li>
     </ul>
   </div>
 </nav>

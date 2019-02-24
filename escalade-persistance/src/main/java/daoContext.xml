@@ -55,5 +55,6 @@
 	<bean id="topoDAO" class="org.oc.escalade.persistance.escaladeDAO.TopoDAOImpl" autowire="byName"/>
 	<bean id="rechercheDAO" class="org.oc.escalade.persistance.rechercheDAO.RechercheDAOImpl" autowire="byName"/>
 	<bean id="locationDAO" class="org.oc.escalade.persistance.locationDAO.LocationDAOImpl" autowire="byName"/>
+	<bean id="commentaireDAO" class="org.oc.escalade.persistance.escaladeDAO.CommentaireDAOImpl" autowire="byName"/> 
 		
 </beans>
