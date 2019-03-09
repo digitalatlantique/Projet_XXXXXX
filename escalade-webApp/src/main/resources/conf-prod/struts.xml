@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<!-- ====Package abstrait contenant la configuration ==== -->
+	<package name="base" abstract="true" extends="struts-default">
+	
+	    <interceptors>
+    		<interceptor name="auth" class="org.oc.escalade.webapp.interceptor.AuthentificationInterceptor"/>
+    		<interceptor-stack name="authentificationPile">
+    			<interceptor-ref name="auth"/>
+    			<interceptor-ref name="defaultStack"/>
+    		</interceptor-stack>
+    	</interceptors>
+    	
+
+	    <!-- Results globaux -->
+        <global-results>
+            <result name="authentificationForm">/jsp/membre/authentification.jsp</result>
+        </global-results> 
+	
+	</package>
+	
+	<!-- ==== Package public ==== -->
+    <package name="public" extends="base">
+
+        <!-- Action par défaut -->
+        <default-action-ref name="index" />
+
+        <!-- Action index -->
+        <action name="index" class="org.oc.escalade.webapp.action.SiteAction" method="doSiteIndex">        
+            <result name="success">/jsp/index.jsp</result>
+        </action>
+        
+        <!-- Recherche -->
+        <action name="recherche" class="org.oc.escalade.webapp.action.RechercheAction" method="doRecherche">
+            <interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+        	<result name="input">/jsp/recherche/recherche.jsp</result> 
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">afficherSite</param>
+        	</result>      	
+        </action>
+        <action name="afficheRechercheMulticritere" class="org.oc.escalade.webapp.action.RechercheMulticritereAction" method="doAfficheRechercheMulticritere">
+       	    <interceptor-ref name="store">
+		        <param name="operationMode">RETRIEVE</param>			
+		    </interceptor-ref>
+   			<interceptor-ref name="defaultStack" />
+    			
+        	<result name="success">/jsp/recherche/rechercheMulticritere.jsp</result>
+        </action>
+        
+        <action name="rechercheMulticritere" class="org.oc.escalade.webapp.action.RechercheMulticritereAction" method="doRechercheMulticritere">
+            <interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+		    
+		    <result name="input">/jsp/recherche/rechercheMulticritere.jsp</result>
+		    
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">afficherSite</param>
+        	</result>
+        </action>
+        
+        <!-- Site -->
+        <action name="afficherSite" class="org.oc.escalade.webapp.action.SiteAction" method="doSite">
+            <interceptor-ref name="store">
+		        <param name="operationMode">RETRIEVE</param>			
+		    </interceptor-ref>
+   			<interceptor-ref name="defaultStack" />
+        	<result name="success">/jsp/escalade/sites.jsp</result>
+        </action>
+        <action name="afficherTousSite" class="org.oc.escalade.webapp.action.SiteAction" method="doTousSite">
+            <interceptor-ref name="store">
+		        <param name="operationMode">RETRIEVE</param>			
+		    </interceptor-ref>
+   			<interceptor-ref name="defaultStack" />
+        	<result name="success">/jsp/escalade/sites.jsp</result>
+        </action>
+        <action name="siteDetail" class="org.oc.escalade.webapp.action.SiteAction" method="doDetail">
+           <interceptor-ref name="store">
+		        <param name="operationMode">RETRIEVE</param>			
+		    </interceptor-ref>
+   			<interceptor-ref name="defaultStack" />        
+        	<result name="success">/jsp/escalade/siteDetail.jsp</result>
+        </action>
+        <action name="ajouterCommentaire" class="org.oc.escalade.webapp.action.SiteAction" method="doAjouterCommentaire">
+            <interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+		    <result name="error">/jsp/escalade/siteDetail.jsp</result>
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">siteDetail</param>
+        		<param name="id">${id}</param>
+        	</result>
+        </action>
+        
+        <!-- Topo -->
+        <action name="topo" class="org.oc.escalade.webapp.action.TopoAction" method="doTopo">
+        	<result name="success">/jsp/escalade/topos.jsp</result>
+        </action>
+        <action name="topoDetail" class="org.oc.escalade.webapp.action.SiteAction" method="doSiteTopo">
+        	<result name="success">/jsp/escalade/sites.jsp</result>
+        </action>
+        
+        <!-- Authentification -->
+        <action name="membre" class="org.oc.escalade.webapp.action.MembreAction" method="doAuthentification">
+            <interceptor-ref name="store">
+		        <param name="operationMode">RETRIEVE</param>			
+		    </interceptor-ref>
+   			<interceptor-ref name="defaultStack" />
+    		<result name="input">/jsp/membre/authentification.jsp</result>
+    		<result name="success">/jsp/membre/membre.jsp</result>
+    	</action>
+    	<action name="reserverAuthentification" class="org.oc.escalade.webapp.action.ReserverAction" method="doVerifierAuthentification">
+    		<interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+    		<result name="login" type="redirectAction">
+    			<param name="actionName">membre</param>
+    		</result>
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">reserverTopo</param>
+    			<param name="topoId">${topoId}</param>
+    		</result>
+    	</action>
+    	
+    	<!-- Inscription -->
+    	<action name="inscription" class="org.oc.escalade.webapp.action.InscriptionAction" method="doInscription">
+    	    <interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+    		<result name="input">/jsp/membre/inscription.jsp</result>
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">membre</param>
+    		</result>
+    	</action>
+    </package>
+    
+    <!-- ==== Package pour l'espace membre ==== -->
+    <package name="prive" extends="base">
+   		<!-- Déconnection du membre -->
+    	<default-interceptor-ref name="authentificationPile"/>
+        <action name="deconnexion" class="org.oc.escalade.webapp.action.MembreAction" method="doDeconnexion">
+    		<result name="success">/jsp/membre/authentification.jsp</result>
+    	</action>  
+    	
+    	<!-- Gestion des sites du membre -->
+    	<action name="formulaireSite">
+    		<result name="success">/jsp/escalade/formulaires/siteCreer.jsp</result>
+    	</action>  
+    	<action name="creerSite" class="org.oc.escalade.webapp.action.SiteFormulaireAction" method="doNouveauSite">
+    	   	<interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+		    <result name="error">/jsp/escalade/formulaires/siteCreer.jsp</result>
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSites</param>
+    		</result>
+    	</action>
+    	<action name="mesSites" class="org.oc.escalade.webapp.action.SiteAction" method="doMesSites">
+            <interceptor-ref name="store">
+		        <param name="operationMode">RETRIEVE</param>			
+		    </interceptor-ref>
+   			<interceptor-ref name="defaultStack" />
+    		<result>/jsp/membre/mesSites.jsp</result>
+    	</action>
+    	<action name="modifierSite" class="org.oc.escalade.webapp.action.SiteFormulaireAction" method="doModifierSite">
+      		<result name="input">/jsp/escalade/formulaires/siteModifier.jsp</result> 
+    	   	<interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+		    <result name="error">/jsp/escalade/formulaires/siteModifier.jsp</result>
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSites</param>
+    		</result>	
+    	</action>
+    	<action name="supprimerSite" class="org.oc.escalade.webapp.action.SiteFormulaireAction" method="doSupprimerSite">
+    	   	<interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSites</param>
+    		</result>
+    	</action>
+    	<!-- Gestion des secteurs -->	
+    	<action name="mesSecteurs" class="org.oc.escalade.webapp.action.SiteAction" method="doMesSecteurs">
+    		<interceptor-ref name="store">
+    			<param name="operationMode">RETRIEVE</param>
+    		</interceptor-ref>
+    		<interceptor-ref name="defaultStack"/>
+    		<result name="success">/jsp/membre/mesSecteurs.jsp</result>
+    	</action>
+    	<action name="creerSecteur" class="org.oc.escalade.webapp.action.SecteurFormulaireAction" method="doCreerSecteur">
+    		<interceptor-ref name="store">
+    			<param name="operationMode">STORE</param>
+    		</interceptor-ref>
+    		<interceptor-ref name="defaultStack"/>
+    		<result name="input">/jsp/escalade/formulaires/secteurCreer.jsp</result>
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSecteurs</param>
+    			<param name="id">${id}</param>
+    		</result>
+    	</action>
+    	<action name="modifierSecteur" class="org.oc.escalade.webapp.action.SecteurFormulaireAction" method="doModifierSecteur">
+    	    <interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+    		<result name="input">/jsp/escalade/formulaires/secteurModifier.jsp</result>
+    		<result name="error">/jsp/escalade/formulaires/secteurModifier.jsp</result>
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSecteurs</param>
+    			<param name="id">${id}</param>
+    		</result>
+    	</action>
+    	<action name="supprimerSecteur" class="org.oc.escalade.webapp.action.SecteurFormulaireAction" method="doSupprimerSecteur">
+    	    <interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSecteurs</param>
+    			<param name="id">${id}</param>
+    		</result>
+    	</action>
+    	<!-- Gestion des voies -->
+		<action name="creerVoie" class="org.oc.escalade.webapp.action.VoieFormulaireAction" method="doCreerVoie">
+		    <interceptor-ref name="store">
+    			<param name="operationMode">STORE</param>
+    		</interceptor-ref>
+    		<interceptor-ref name="defaultStack"/>
+    		<result name="input">/jsp/escalade/formulaires/voieCreer.jsp</result>
+    		<result name="error">/jsp/escalade/formulaires/voieCreer.jsp</result>
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSecteurs</param>
+    			<param name="id">${id}</param>
+    		</result>
+		</action>
+		<action name="modifierVoie" class="org.oc.escalade.webapp.action.VoieFormulaireAction" method="doModifierVoie">
+    	    <interceptor-ref name="store">		
+		        <param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+		    <result name="input">/jsp/escalade/formulaires/voieModifier.jsp</result>
+		    <result name="error">/jsp/escalade/formulaires/voieModifier.jsp</result>
+		    <result name="success" type="redirectAction">
+   				<param name="actionName">mesSecteurs</param>
+    			<param name="id">${id}</param>		    	
+		    </result>		
+		</action>
+		<action name="supprimerVoie" class="org.oc.escalade.webapp.action.VoieFormulaireAction" method="doSupprimerVoie">
+   	    	<interceptor-ref name="store">		
+		    	<param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">mesSecteurs</param>
+    			<param name="id">${id}</param>
+    		</result>		
+		</action>
+		
+		<!-- Gestion des topos -->
+		<action name="mesTopos" class="org.oc.escalade.webapp.action.TopoAction" method="doMesTopos">
+    		<interceptor-ref name="store">
+    			<param name="operationMode">RETRIEVE</param>
+    		</interceptor-ref>
+    		<interceptor-ref name="defaultStack"/>
+			<result name="success">/jsp/membre/mesTopos.jsp</result>
+		</action>
+		<action name="creerTopo" class="org.oc.escalade.webapp.action.TopoFormulaireAction" method="doCreerTopo">
+			<interceptor-ref name="store">		
+		    	<param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+			<result name="input">/jsp/escalade/formulaires/topoCreer.jsp</result>
+			<result name="error">/jsp/escalade/formulaires/topoCreer.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">mesTopos</param>
+			</result>
+		</action>
+		<action name="modifierTopo" class="org.oc.escalade.webapp.action.TopoFormulaireAction" method="doModifierTopo">
+			<interceptor-ref name="store">		
+		    	<param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+			<result name="input">/jsp/escalade/formulaires/topoModifier.jsp</result>
+			<result name="error">/jsp/escalade/formulaires/topoModifier.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">mesTopos</param>
+			</result>
+		</action>
+		<action name="supprimerTopo" class="org.oc.escalade.webapp.action.TopoFormulaireAction" method="doSupprimerTopo">
+			<interceptor-ref name="store">		
+		    	<param name="operationMode">STORE</param>		
+		    </interceptor-ref>		
+		    <interceptor-ref name="defaultStack" />
+			<result name="success" type="redirectAction">
+				<param name="actionName">mesTopos</param>
+			</result>
+		</action>
+        <action name="monTopoDetail" class="org.oc.escalade.webapp.action.SiteAction" method="doMesSiteTopo">
+        	<result name="success">/jsp/membre/monTopoDetail.jsp</result>
+        </action>
+        <action name="ajouterSiteAuTopo" class="org.oc.escalade.webapp.action.TopoFormulaireAction" method="doAjouterSiteAuTopo">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">monTopoDetail</param>
+        		<param name="topoId">${topoId}</param>
+        	</result>
+        </action>
+        <action name="retirerSiteAuTopo" class="org.oc.escalade.webapp.action.TopoFormulaireAction" method="doRetirerSiteAuTopo">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">monTopoDetail</param>
+        		<param name="topoId">${topoId}</param>
+        	</result>        
+        </action>
+        <!-- Réservation des topos -->
+        <action name="reserverTopo" class="org.oc.escalade.webapp.action.ReserverAction" method="doReserverTopo">
+        	<result name="input">/jsp/escalade/formulaires/reserverCreer.jsp</result>
+        	<result name="error">/jsp/escalade/formulaires/reserverCreer.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">mesReservations</param>
+			</result>
+        </action>
+        <action name="mesReservations" class="org.oc.escalade.webapp.action.ReserverAction" method="doMesReservations">
+        	<result name="success">/jsp/membre/mesResevations.jsp</result>
+        </action>
+        <action name="supprimerReservation" class="org.oc.escalade.webapp.action.ReserverAction" method="doSupprimerReservation">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">mesReservations</param>
+        	</result>
+        </action>
+    </package>
+</struts>
