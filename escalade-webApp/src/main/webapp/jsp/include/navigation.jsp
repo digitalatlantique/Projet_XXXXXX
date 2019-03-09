@@ -11,7 +11,9 @@
 			<li class="nav-item">
 			  <s:a class="nav-link" action="membre">Membre</s:a>
 			</li>
-			
+			<li class="nav-item">
+			  <s:a class="nav-link" action="afficherTousSite">Sites</s:a>
+			</li>			
 			<li class="nav-item">
 				<s:a class="nav-link" action="topo">Topos</s:a>
 			</li>

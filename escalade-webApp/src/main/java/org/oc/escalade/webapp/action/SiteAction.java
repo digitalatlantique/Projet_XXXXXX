@@ -39,13 +39,17 @@ public class SiteAction extends ActionSupport implements SessionAware{
 	public String doSiteIndex() {
 		log.debug("Action index");
 		dernierSite = (Site) siteService.chercherDernier();
-		List<Site> sites = siteService.listerTout();
-		session.put("sites", sites);
 		return ActionSupport.SUCCESS;
 	}
 	
 	public String doSite() {
 		return SUCCESS;
+	}
+	public String doTousSite() {
+
+		List<Site> sites = siteService.listerTout();
+		session.put("sites", sites);
+		return ActionSupport.SUCCESS;
 	}
 	
 	public String doSiteTopo() {

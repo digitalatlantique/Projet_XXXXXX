@@ -93,7 +93,7 @@ public class SiteDAOImpl extends AbstractEscaladeDAO implements SiteDAO<Site> {
 	@Override
 	public List<Site> listerTout() {
 		Session session = sessionFactory.getCurrentSession();
-		String requete = "FROM Site";
+		String requete = "SELECT s FROM Site s ORDER BY s.id DESC";
 		return session.createQuery(requete).list();
 	}
 }
