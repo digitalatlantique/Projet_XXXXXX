@@ -14,8 +14,9 @@ Configurer les propriétés avec les valeurs de votre configuration de base de d
 * <jdbc.driver>*Votre driver*</jdbc.driver>
 * <jdbc.url>*Votre url*</jdbc.url>
 * <jdbc.user>*votre user*</jdbc.user>
-* <jdbc.pass>*votre_pass*</jdbc.pass>
-Disponible dans escalade/assets/sql      
+* <jdbc.pass>*votre_pass*</jdbc.pass> 
+ 
+#### Disponible dans escalade/assets/sql      
 * Dump de la base de donnée 
 * Jeu d'essai  
 * Modèle physique de données
