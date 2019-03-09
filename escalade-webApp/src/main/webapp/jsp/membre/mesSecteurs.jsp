@@ -7,53 +7,71 @@
 		<meta charset="UTF-8">
 		<title>Escalade site détail</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style/mesSecteurs.css">
 		<s:head />
 	</head>
-	<body>
+	<body class="container-fluid">
 	
-		<div class="container">
-		
-			<%@include file="../include/navigation.jsp" %>
+		<%@include file="../include/navigation.jsp" %>
+		<div class="container">			
 	
-			<h1>Détail du site</h1>
-
-			<h2><s:property value="site.nom"/></h2>
-					
-			<s:a action="creerSecteur">Créer un secteur</s:a>
+			<h1><s:property value="site.nom"/></h1>
+			
+			<div class="creer">
+				<s:a action="creerSecteur">Créer un secteur</s:a>
+			</div>		
 			
 			<s:actionmessage/>
 			
 			<s:iterator value="site.secteurs">
-			
-				<h3>Secteur : <s:property value="nom"/></h3>					
+				<div class="secteur">
+					<h3>Secteur : <s:property value="nom"/></h3>					
+					<span class="gras">Hauteur : </span><s:property value="hauteur"/> m<br>				
+				</div>
+
+				<span class="modifier">
+					<s:a action="modifierSecteur">Modifier
+						<s:param name="idSecteur" value="id" />
+					</s:a>				
+				</span>
+
+				<span class="supprimer">
+					<s:a action="supprimerSecteur">Supprimer
+						<s:param name="idSecteur" value="id" />
+					</s:a>			
+				</span><br>
 				
-				<s:a action="modifierSecteur">Modifier
-					<s:param name="idSecteur" value="id" />
-				</s:a>
-				<s:a action="supprimerSecteur">Supprimer
-					<s:param name="idSecteur" value="id" />
-				</s:a><br>
+				<div class="creer">
+					<s:a action="creerVoie">Créer une voie
+						<s:param name="idSecteur" value="id"/>
+					</s:a>				
+				</div>
 				
-				Hauteur : <s:property value="hauteur"/> m<br>
+				
+
 				<img src="images/images_secteurs/<s:property value="imagePath"/>"/><br>
-				
-				<s:a action="creerVoie">Créer une voie
-					<s:param name="idSecteur" value="id"/>
-				</s:a>
-				
-				<s:iterator value="voies">
-					<h4>Voie n° : <s:property value="numero"/></h4>
-					<s:a action="modifierVoie">Modifier
-						<s:param name="idVoie" value="id"/>
-					</s:a>
-					<s:a action="supprimerVoie">Supprimer
-						<s:param name="idVoie" value="id"/>
-					</s:a>
-					<ul>
-						<li>Nom : <s:property value="nom"/></li>
-						<li>Cotation : <s:property value="cotation"/></li>
-					</ul>
-				</s:iterator>
+				<div id="voies">
+					<s:iterator value="voies">
+						<h4>Voie n° : <s:property value="numero"/></h4>
+						<div id="voie">
+							<span class="modifier">
+								<s:a action="modifierVoie">Modifier
+									<s:param name="idVoie" value="id"/>
+								</s:a>					
+							</span>
+							<span class="supprimer">
+								<s:a action="supprimerVoie">Supprimer
+									<s:param name="idVoie" value="id"/>
+								</s:a>
+							</span>
+		
+							<ul>
+								<li>Nom : <s:property value="nom"/></li>
+								<li>Cotation : <s:property value="cotation"/></li>
+							</ul>
+						</div>
+					</s:iterator>
+				</div>
 				
 			</s:iterator>
 		</div>

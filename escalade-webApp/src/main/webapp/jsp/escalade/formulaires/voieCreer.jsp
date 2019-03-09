@@ -8,40 +8,40 @@
 		<meta charset="UTF-8">
 		<title>Créer une voie</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style/voiecreer.css">
 	</head>
 	
-	<body>
+	<body class="container-fluid">
 	
+		<%@include file="../../include/navigation.jsp" %>
 		<div class="container">
-						
-			<%@include file="../../include/navigation.jsp" %>
-
-			<h1>Création d'une voie</h1>
 			
 			<s:actionerror/>
 			
-			<form action="creerVoie">
-			
-				<fieldset class="form-group">
+			<div class="formulaire">
+				<form action="creerVoie">
 				
-					<div class="form-row">
-						<div class="col-md-3">
+					<fieldset>
+						<legend>Nouvelle voie</legend>				
+
+						<div class="form-group">
 						  	<s:textfield class="form-control" placeholder="Numéro" name="numero" />
 						</div>
-						<div class="col-md-3">
+						<div class="form-group">
 						  	<s:textfield class="form-control" placeholder="Nom" name="nom" />
 						</div>
-						<div class="col-md-3">
+						<div class="form-group">
 						  	<s:textfield class="form-control" placeholder="Cotation" name="cotation" />
 						</div>
 						<s:hidden name="idSecteur" value="%{idSecteur}"/>
-						<div class="col-md-3">
+						<div class="form-group">
 						  <s:submit class="btn btn-primary" value="Valider"/>
 						</div>
-					</div>
-				  
-				</fieldset>
-			</form>
+			  
+					</fieldset>
+				</form>
+			</div>			
+
 		</div>
 	</body>
 </html>

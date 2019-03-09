@@ -6,40 +6,53 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Escalade-index</title>
+		<title>Recherche multicritère</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style/rechercheMulticritere.css">
 	</head>
 	
-	<body>
-		<div class="container">
-		
-			<%@include file="../include/navigation.jsp" %>
+	<body class="container-fluid">
+	
+		<%@include file="../include/navigation.jsp" %>
+		<div class="container">			
 			
-			<s:actionerror/>
+			<div class="formulaire">
 			
-			<form action="rechercheMulticritere">
+				<div>
+					<s:actionerror/>
 			
-				<fieldset class="form-group">
+					<form action="rechercheMulticritere">
+					
+						<fieldset class="form-group">
+					
+							<div class="row">
+								<div class="col-sm-12">
+								  	<s:textfield class="form-control" placeholder="Nom" name="nom" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+								  	<s:textfield class="form-control" placeholder="Localite" name="localite" />
+								</div>						
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+								  	<s:textfield class="form-control" placeholder="Cotation" name="cotation" />
+								</div>	
+							</div>
+
+							  <div class="row">
+								<div class="col-sm-12">
+								  <s:submit class="btn btn-primary" value="Rechercher"/>
+								</div>
+							  </div>
+						  
+						  </fieldset>
+					</form>
+				</div>
 			
-					<div class="form-row">
-						<div class="col-7">
-						  	<s:textfield class="form-control" placeholder="Nom" name="nom" />
-						</div>
-						<div class="col">
-						  	<s:textfield class="form-control" placeholder="Localite" name="localite" />
-						</div>
-						<div class="col">
-						  	<s:textfield class="form-control" placeholder="Cotation" name="cotation" />
-						</div>
-					</div>
-					  <div class="form-group row">
-						<div class="col-sm-10">
-						  <s:submit class="btn btn-primary" value="Rechercher"/>
-						</div>
-					  </div>
-				  
-				  </fieldset>
-			</form>
+			</div>
+
 			
 		</div>
 	</body>

@@ -8,32 +8,35 @@
 		<meta charset="UTF-8">
 		<title>Réserver un topo</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-
+		<link rel="stylesheet" href="style/reserverCreer.css">
 	</head>
 	
-	<body>
+	<body class="container-fluid">
 	
-		<div class="container">
-						
-			<%@include file="../../include/navigation.jsp" %>
-
-			<h1>Réserver <s:property value="#session.topo.libelle"/></h1>
+		<%@include file="../../include/navigation.jsp" %>
+		
+		<div class="container">			
 			
 			<s:actionerror/>
-			
-			<s:form action="reserverTopo">
-				<div class="form-group">
-					<s:textfield type="date" name="dateFormulaire" label="Date de location "/>
-				</div>
-				<s:hidden name="topoId" value="%{topoId}"></s:hidden>
-				<s:submit value="Louer" class="btn btn-primary" />
-			</s:form>
+			<div class="formulaire">
+				<s:form action="reserverTopo">
+					<fieldset>
+						<legend>Réserver <s:property value="#session.topo.libelle"/></legend>
+						<div class="form-group">
+							<s:textfield type="date" name="dateFormulaire" label="Date de location "/>
+						</div>
+						<s:hidden name="topoId" value="%{topoId}"></s:hidden>
+						<s:submit value="Louer" class="btn btn-primary" />					
+					</fieldset>	
+				</s:form>			
+			</div>
+
 			
 			<s:if test="#session.locations">
 			
 				<ul>
 					<s:iterator value="#session.locations">
-						<li>Réservé le : <s:property value="date.getTime()"/> par <s:property value="membre.prenom"/> <s:property value="membre.nom"/></li>
+						<li><span class="gras">Réservé le : </span><s:property value="date.getTime()"/> <span class="gras">par </span><s:property value="membre.prenom"/> <s:property value="membre.nom"/></li>
 					</s:iterator>				
 				</ul>
 

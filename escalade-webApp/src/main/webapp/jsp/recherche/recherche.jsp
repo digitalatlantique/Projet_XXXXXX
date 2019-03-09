@@ -6,41 +6,46 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Escalade-index</title>
+		<title>Recherche</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style/recherche.css">
 	</head>
 	
-	<body>
-		<div class="container">
+	<body class="container-fluid">
+		<%@include file="../include/navigation.jsp" %>
+		<div class="container">	
 		
-			<%@include file="../include/navigation.jsp" %>
+			<div class="formulaire">
 			
-			<s:actionerror/>
-		
-			<s:form action="recherche">
-				 <fieldset class="form-group">
-					<div class="row">
+				<div>
+					<s:actionerror/>
+				
+					<s:form action="recherche">
+						 
+						<div class="row">				
+							<div class="form-check">
+								<s:radio name="choixCritere" list="criteres" value="defaultCritere"> </s:radio>					
+							 </div>
+						</div>					  
+						
+						<div class="row">
+							<div class="col-sm-12">			
+							  	<s:textfield class="form-control" id="inputdefault" name="saisie" placeholder="Votre mot clé" requiredLabel="true" />
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-sm-10">
+							  	<s:submit class="btn btn-primary" value="Rechercher"/>
+							</div>
+						 </div>					  
+						
+					</s:form>
+					<s:a action="afficheRechercheMulticritere" >Recherche multicritère</s:a>
+				</div>			
 			
-					  <div class="form-check">
-					  	<s:radio label="Critère " name="choixCritere" list="criteres" value="defaultCritere"> </s:radio>					
-					  </div>
-					</div>
-				  </fieldset>
-			
-				  <div class="form-group row">
-					<div class="col-sm-10">
-					  <s:textfield class="form-control" name="saisie" placeholder="Saisir un critère" requiredLabel="true" />
-					</div>
-				  </div>
-			
-				  <div class="form-group row">
-					<div class="col-sm-10">
-					  <s:submit class="btn btn-primary" value="Rechercher"/>
-					</div>
-				  </div>
-			</s:form>
-			
-			<s:a action="afficheRechercheMulticritere" >Recherche multicritère</s:a>
+			</div>		
+
 
 		</div>
 	</body>

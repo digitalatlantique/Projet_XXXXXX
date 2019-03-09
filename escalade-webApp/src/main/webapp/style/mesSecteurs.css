@@ -1,0 +1,128 @@
+@font-face {
+    font-family: 'philosopherregular';
+    src: url('police/philosopher/Philosopher-Regular-webfont.eot');
+    src: url('police/philosopher/Philosopher-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('police/philosopher/Philosopher-Regular-webfont.woff2') format('woff2'),
+         url('police/philosopher/Philosopher-Regular-webfont.woff') format('woff'),
+         url('police/philosopher/Philosopher-Regular-webfont.ttf') format('truetype'),
+         url('police/philosopher/Philosopher-Regular-webfont.svg#philosopherregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+	font-family: philosopherregular,Roboto,"Helvetica Neue",Arial,sans-serif;
+	color : #005691;
+	background-color: #FAFAFA;
+}
+
+
+h1{	
+	font-family:"Helvetica Neue";
+	margin : 60px 0 60px 0;
+	font-weight : bold;
+	text-align: center;
+}
+h2{
+	margin : 20px 0 10px 0px;
+	font-weight : bold;	
+	text-align: left;
+
+}
+p{
+	margin : 0px;
+}
+
+section{
+	clear : both;
+	font-size: 1.2em;
+	margin-bottom: 40px;
+}
+a:hover{
+	text-decoration: none;
+}
+img{
+
+	max-width: 200px;
+	max-height: 312px;
+	margin : 0px 0px 60px 0px;;
+
+
+}
+textarea{
+	width : 480px;
+	height : 240px;
+}
+
+#voies{
+	display : flex;
+	flex-wrap: wrap;
+}
+#voie{
+	margin : 20px 20px 0px 20px;
+	padding : 10px;
+}
+.commentaire{
+	display : flex;
+	flex-direction: center;
+	justify-content : center;
+	margin-top : 60px;
+}
+.label{
+	font-size : 1.5em;
+	margin-right : 20px;
+	font-weight: bold;
+}
+.container-fluid{
+	margin : 100%;
+	padding : 0px;
+	margin : 0px;
+
+}
+.secteur{
+
+}
+.gras{
+	font-weight : bold;
+}
+.creer{
+
+	text-align : right;
+}
+.creer a{
+	border : 1px solid #007BFF;
+	border-radius : 10px;
+	padding : 6px;
+}
+.modifier{
+	display : inline-block;
+	margin : 20px 6px 30px 0px;
+}
+.modifier a{
+
+	border : 1px solid #007BFF;
+	border-radius : 10px;
+	padding : 6px;	
+}
+
+.supprimer a{
+
+	border : 1px solid #F9A828;
+	border-radius : 10px;
+	padding : 6px;	
+	color : #F9A828;	
+}
+ul{
+	list-style: none;
+	font-size: 1.2em;
+}
+@media (max-width: 960px) {
+	.navbar {
+		display : flex;
+		
+	}
+	#navbarNav, #navbarCollapse{
+		display : flex;
+		flex-direction: column;
+	}
+}

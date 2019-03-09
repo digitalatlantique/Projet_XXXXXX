@@ -8,28 +8,35 @@
 		<meta charset="UTF-8">
 		<title>Topos</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style/topos.css">
 		<s:head />
 	</head>
 	
-	<body>
+	<body class="container-fluid">
 	
-		<div class="container">
+		<%@include file="../include/navigation.jsp" %>
 		
-			<%@include file="../include/navigation.jsp" %>
-	
+		<div class="container">
+			
 			<h1>Liste des topos</h1>
 			
 			<s:if test="topos">
-				<s:iterator value="topos">			
-					<s:a action="topoDetail">						
-						<h2><s:property value="libelle"/></h2>					
-						<s:param name="topoId" value="id"/>					
-					</s:a>
-					<h3>Information du topo</h3>
-					<s:property value="information"/><br>
-					<s:a action="reserverAuthentification">Réserver
-						<s:param name="topoId" value="id"/>
-					</s:a> 			
+				<s:iterator value="topos">	
+					<section>
+						<s:a action="topoDetail">						
+							<h2><s:property value="libelle"/></h2>					
+							<s:param name="topoId" value="id"/>					
+						</s:a>
+						<h3>Information du topo</h3>
+						<s:property value="information"/>
+						<div class="creer">
+							<s:a action="reserverAuthentification">Réserver
+								<s:param name="topoId" value="id"/>
+							</s:a> 
+						</div>
+
+					</section>		
+			
 				</s:iterator>
 			</s:if>
 			<s:else>

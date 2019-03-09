@@ -8,28 +8,34 @@
 		<meta charset="UTF-8">
 		<title>Créer un secteur</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style/secteurCreer.css">
 	</head>
 	
-	<body>
+	<body class="container-fluid">
 	
-		<div class="container">
-						
-			<%@include file="../../include/navigation.jsp" %>
-
-			<h1>Création d'un secteur</h1>
+		<%@include file="../../include/navigation.jsp" %>
+		
+		<div class="container">			
 			
 			<s:actionerror/>
 			
-			<form action="creerSecteur">
-				<div class="form-group">
-					<s:textfield class="form-control" name="nom" placeholder="Nom" />
-				</div>
-				<div class="form-group">
-					<s:textfield class="form-control" name="hauteur" placeholder="Hauteur" />
-				</div>
-				<s:hidden name="id" value="%{id}"/>
-				<button type="submit" class="btn btn-primary">Créer</button>
-			</form>
+			<div class="formulaire">
+				<form action="creerSecteur">
+					<fieldset>
+						<legend>Nouveau secteur</legend>
+						<div class="form-group">
+							<s:textfield class="form-control" name="nom" placeholder="Nom" />
+						</div>
+						<div class="form-group">
+							<s:textfield class="form-control" name="hauteur" placeholder="Hauteur" />
+						</div>
+						<s:hidden name="id" value="%{id}"/>
+						<button type="submit" class="btn btn-primary">Créer</button>					
+					</fieldset>
+				</form>				
+			</div>
+			
+
 		
 		</div>
 
